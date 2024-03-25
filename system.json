@@ -1,0 +1,47 @@
+{
+    "id": "mdi",
+    "title": "Máscaras del Imperio",
+    "description": "Sistema para jugar a Máscaras del Imperio",
+    "version": "0.0.1",
+    "authors": [
+      {
+        "name": "ParvusDomus",
+        "flags": {}
+      }
+    ],
+    "compatibility": {
+      "minimum": "11",
+      "verified": "11"
+    },
+    "esmodules": [
+      "mdi.js"
+    ],
+    "styles": [
+      "style/mdi.css"
+    ],
+    "media": [
+      {
+        "type": "setup",
+        "url": "systems/mdi/style/images/completo.webp",
+        "thumbnail": "systems/mdi/style/images/completo.webp"
+      }
+    ],
+  
+    "languages": [
+      {
+        "lang": "es",
+        "name": "Spanish",
+        "path": "lang/es.json",
+        "flags": {}
+      }
+    ],
+    "initiative": "@initiative",
+    "gridDistance": 2,
+    "gridUnits": "m",
+    "primaryTokenAttribute": "resources.resolve",
+    "secondaryTokenAttribute": "resources.karma",
+    "url": "https://github.com/parvusdomus/mdi",
+    "manifest": "https://github.com/parvusdomus/mdi/releases/latest/download/system.json",
+    "download": "https://github.com/parvusdomus/mdi/releases/latest/download/mdi.zip",
+    "license": "LICENSE.txt"
+  }

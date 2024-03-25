@@ -1,0 +1,32 @@
+<form class="{{cssClass}} cdbe" autocomplete="off">
+    <div class="item">
+      <h1><input style="text-align: center;" name="name" type="text" value="{{item.name}}" placeholder='Quirk' onClick="this.select();"/></h1>
+        <table>
+          <tr>
+            <td><h2><label>&nbsp;Puntuación:&nbsp;</label></h2></td>
+            <td><h2><input name="system.puntuacion" type="number" maxlength="2" size="2" value="{{item.system.puntuacion}}" data-dtype="Number"/></h2></td>
+            <td><h2><label>&nbsp;Penalización:&nbsp;</label></h2></td>
+            <td><h2><input name="system.penalizacion" type="number" maxlength="2" size="2" value="{{item.system.penalizacion}}" data-dtype="Number"/></h2></td>
+          </tr>
+          <tr>
+            <td><h2><label>&nbsp;Precio:&nbsp;</label></h2></td>
+            <td colspan="2"><h2><input name="system.precio" type="text" value="{{item.system.precio}}" data-dtype="String"/></h2></td>
+          </tr>
+      </table>
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <td><a class="item" data-tab="descripcion">Descripción</a></td>
+            <td><a class="item" data-tab="efectos">Efectos</a></td>
+        </nav>
+    </div>
+    {{!-- Item Sheet Body --}}
+        <section class="sheet-body">
+          {{!-- Descripcion Tab --}}
+          <div class="tab descripcion desc armanotes" data-group="primary" data-tab="descripcion">
+            {{editor item.system.desc target="system.desc" button=true owner=owner editable=true}}
+          </div>
+          {{!-- Efectos Tab --}}
+          <div class="tab efectos desc donnotes" data-group="primary" data-tab="efectos">
+
+          </div>
+        </section>
+</form>

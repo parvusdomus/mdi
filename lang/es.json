@@ -1,0 +1,9 @@
+{
+    "TYPES.Actor.Jugador": "Encubierto",
+    "TYPES.Actor.PNJ": "Personaje No Jugador",
+    "TYPES.Item.talento": "Talento",
+    "TYPES.Item.objeto": "Objeto",
+    "TYPES.Item.arma": "Arma",
+    "TYPES.Item.armadura": "Armadura",
+    "TYPES.Item.escudo": "Escudo"
+}

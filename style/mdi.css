@@ -1,0 +1,262 @@
+@font-face {
+    font-family: "Cardinal";
+    src: url("../../../systems/mdi/style/fonts/Cardinal.ttf");
+}
+
+@font-face {
+    font-family: "Leander";
+    src: url("../../../systems/mdi/style/fonts/Leander.ttf");
+}
+
+@font-face {
+    font-family: "Seaweed";
+    src: url("../../../systems/mdi/style/fonts/Seaweed.ttf");
+}
+
+.charsheet {
+    display: flex;
+  }
+
+.left-section {
+    width: 35%;
+    max-height: 100%;
+    text-align: center;
+    background-color: none;
+    padding-right: 20px;
+}
+
+.left-section h2, h1{
+    border-bottom: none;
+}
+
+.middle-section {
+    width: 25%;
+    height: 100%;
+}
+
+.middle-section h2, h1{
+    border-bottom: none;
+}
+
+.right-section {
+    width: 40%;
+    height: 100%;
+    padding-left: 20px;
+}
+
+.right-section h2, h1{
+    border-bottom: none;
+}
+
+.char-pic img{
+    background-color: white;
+    width: 200px;
+    height: 250px;
+    border-width: 3px;
+}
+
+.char-name input{
+    font-family: var(--input-font);
+    background-color: none;
+    background: none;
+    color: var(--input-text-color);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+}
+
+.habilidad table {
+    background: none;
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+}
+
+.habilidad label {
+    font-family: var(--header-font);
+    color: var(--header-text-color);
+    text-align: left;
+}
+
+.habilidad input {
+    font-family: var(--input-font);
+    background-color: none;
+    background: none;
+    color: var(--input-text-color);
+    border: none;
+}
+
+.pericia table{
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+}
+
+.pericia label{
+    font-family: var(--header-font);
+    color: var(--header-text-color);
+    text-align: left;
+}
+
+.recursos table {
+    background: none;
+    width: 100%;
+    border: none;
+}
+
+.recursos label {
+    font-family: var(--header-font);
+    color: var(--header-text-color);
+    text-align: left;
+}
+
+.recursos input {
+    font-family: var(--input-font);
+    background-color: none;
+    background: none;
+    color: var(--input-text-color);
+    border: none;
+}
+
+.item h2, h1{
+    border-bottom: none;
+}
+
+.item table {
+    background: none;
+    width: 100%;
+    border: none;
+}
+
+.item label {
+    font-family: var(--header-font);
+    color: var(--header-text-color);
+    text-align: left;
+}
+
+.item input {
+    font-family: var(--input-font);
+    background-color: none;
+    background: none;
+    color: var(--input-text-color);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+}
+
+.item select {
+    font-family: var(--input-font);
+    background-color: none;
+    background: none;
+    color: var(--input-text-color);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+}
+
+.items table {
+    background: none;
+    width: 100%;
+    border: none;
+    font-family: var(--input-font);
+    color: var(--input-text-color);
+}
+
+.talentnotes {
+    height: 225px;
+}
+
+.armanotes {
+    height: 130px;
+}
+
+.notas {
+    height: 633px;
+}
+
+:root { 
+    --bg-image: url("../../../systems/mdi/style/images/white.webp");
+    --chat-bg-image: url("../../../systems/mdi/style/images/white.webp");
+    --header-font: "Leander";
+    --input-font: "Seaweed";
+    --pause-font: "Cardinal";
+    --header-text-color: black;
+    --input-text-color: darkred;
+}
+
+.mdi .window-content{
+    background-color: white;
+    background: var(--bg-image) no-repeat;
+    background-size: 100% 100%;
+}
+
+
+#pause .pause-image {
+    background: url("images/logo.webp");
+    background-size: 128px;
+    width: 128px;
+    height: 128px;
+    padding-left: 128px;
+}
+
+#pause .pause-mdi {
+    font-family: var(--pause-font);
+    margin: 0 auto;
+    text-align: center;
+    transform: scale3d(1, 1, 1);
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #f4eded;
+}
+
+.editor {
+    height: 100%;
+}
+
+.editor-content
+{
+    list-style: circle;
+    text-align: left;
+    padding: 5px;
+    font-family: var(--input-font);
+    color: var(--input-text-color);
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    font-size: x-large;
+}
+
+.sheet nav.sheet-tabs {
+    font-family: var(--header-font);
+    margin: 4px 0;
+    border-top: none;
+    border-bottom: none;
+}
+
+.sheet .tabs .item.active {
+    background: black;
+    color: white;
+    font-family: var(--header-font);
+    font-weight: 900;
+    text-shadow: none;
+}
+
+.sheet .tabs .item:hover {
+    background: gray;
+    color: black;
+    text-shadow: none;
+}

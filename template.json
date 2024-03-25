@@ -1,0 +1,193 @@
+{
+    "Actor": {
+        "types":
+        [
+            "Jugador",
+            "PNJ"
+        ],
+        "Jugador": {
+            "concepto": "",
+            "brio": {
+                "valor": 0,
+                "etiqueta": "Brío",
+                "atletismo": {
+                    "valor": false,
+                    "etiqueta": "Atletismo"
+                },
+                "equitacion": {
+                    "valor": false,
+                    "etiqueta": "Equitación"
+                },
+                "intimidar": {
+                    "valor": false,
+                    "etiqueta": "Intimidar"
+                },
+                "cac": {
+                    "valor": false,
+                    "etiqueta": "Combate cuerpo a cuerpo"
+                },
+                "sinarmas": {
+                    "valor": false,
+                    "etiqueta": "Combate sin armas"
+                },
+                "supervivencia": {
+                    "valor": false,
+                    "etiqueta": "Supervivencia"
+                }
+            },
+            "picaresca": {
+                "valor": 0,
+                "etiqueta": "Picaresca",
+                "acrobacias": {
+                    "valor": false,
+                    "etiqueta": "Acrobacias"
+                },
+                "enganar": {
+                    "valor": false,
+                    "etiqueta": "Engañar"
+                },
+                "perspicacia": {
+                    "valor": false,
+                    "etiqueta": "Perspicacia"
+                },
+                "distancia": {
+                    "valor": false,
+                    "etiqueta": "Combate a distancia"
+                },
+                "latrocinio": {
+                    "valor": false,
+                    "etiqueta": "Latrocinio"
+                },
+                "sigilo": {
+                    "valor": false,
+                    "etiqueta": "Sigilo"
+                }
+            },
+            "galanteria": {
+                "valor": 0,
+                "etiqueta": "Galantería",
+                "bajos": {
+                    "valor": false,
+                    "etiqueta": "Bajos Fondos"
+                },
+                "comercio": {
+                    "valor": false,
+                    "etiqueta": "Comercio"
+                },
+                "seduccion": {
+                    "valor": false,
+                    "etiqueta": "Seducción"
+                },
+                "arte": {
+                    "valor": false,
+                    "etiqueta": "Arte"
+                },
+                "diplomacia": {
+                    "valor": false,
+                    "etiqueta": "Diplomacia"
+                },
+                "animales": {
+                    "valor": false,
+                    "etiqueta": "Trato con animales"
+                }
+            },
+            "erudicion": {
+                "valor": 0,
+                "etiqueta": "Erudición",
+                "humanidades": {
+                    "valor": false,
+                    "etiqueta": "Humanidades"
+                },
+                "ingenieria": {
+                    "valor": false,
+                    "etiqueta": "Ingeniería"
+                },
+                "medicina": {
+                    "valor": false,
+                    "etiqueta": "Medicina"
+                },
+                "ciencias": {
+                    "valor": false,
+                    "etiqueta": "Ciencias"
+                },
+                "linguistica": {
+                    "valor": false,
+                    "etiqueta": "Lingüistica"
+                },
+                "navegacion": {
+                    "valor": false,
+                    "etiqueta": "Navegación"
+                }
+            },
+            "pv": {
+                "value": 0,
+                "min": 0,
+                "max": 0
+            },
+            "defensa": {
+                "value": 0
+            },
+            "iniciativa": {
+                "value": 0
+            },
+            "fortuna": {
+                "value": 0,
+                "min": 0,
+                "max": 0
+            },
+            "notas": ""
+        },
+        "PNJ": {
+            "resources":{
+                "effort": {
+                    "value": 3,
+                    "min": 0,
+                    "max": 3
+                }
+            },
+            "initiative": "0.99",
+            "traits": "",
+            "rank": 1,
+            "description": ""
+        }
+    },
+    "Item": {
+        "types":
+        [
+            "talento",
+            "objeto",
+            "arma",
+            "armadura",
+            "escudo"
+        ],
+        "talento": {
+            "notas": ""
+        },
+        "objeto": {
+            "notas": ""
+        },
+        "arma": {
+            "pericia": "cac",
+            "dano": 0,
+            "alcance": "",
+            "precio": "",
+            "equipada": false,
+            "notas": ""   
+        },
+        "armadura": {
+            "puntuacion": 0,
+            "penalizacion": 0,
+            "precio": "",
+            "equipada": false,
+            "notas": ""
+        },
+        "escudo": {
+            "puntuacion": 0,
+            "penalizacion": 0,
+            "precio": "",
+            "equipada": false,
+            "notas": ""
+        }
+    }
+
+}

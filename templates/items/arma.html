@@ -1,0 +1,45 @@
+<form class="{{cssClass}} cdbe" autocomplete="off">
+    <div class="item">
+      <h1><input style="text-align: center;" name="name" type="text" value="{{item.name}}" placeholder='Quirk' onClick="this.select();"/></h1>
+        <table>
+          <tr>
+            <td style="width: 25%;"><h2><label>&nbsp;Pericia:&nbsp;</label></h2></td>
+            <td style="width: 25%;">
+              <h2>
+                <select name="system.pericia" data-dtype="String">
+                  {{#select item.system.pericia}}
+                      <option value="cac">Cuerpo a c.</option>
+                      <option value="sinarmas">Sin armas</option>
+                      <option value="atletismo">Atletismo</option>
+                      <option value="distancia">A distancia</option>
+                  {{/select}}
+                </select>
+              </h2>
+            </td>
+            <td><h2><label>&nbsp;Daño:&nbsp;</label></h2></td>
+            <td><h2><input name="system.dano" type="number" maxlength="2" size="2" value="{{item.system.dano}}" data-dtype="Number"/></h2></td>
+          </tr>
+          <tr>
+            <td><h2><label>&nbsp;Alcance:&nbsp;</label></h2></td>
+            <td><h2><input name="system.alcance" type="text" value="{{item.system.alcance}}" data-dtype="String"/></h2></td>
+            <td><h2><label>&nbsp;Precio:&nbsp;</label></h2></td>
+            <td><h2><input name="system.precio" type="text" value="{{item.system.precio}}" data-dtype="String"/></h2></td>
+          </tr>
+      </table>
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <td><a class="item" data-tab="descripcion">Descripción</a></td>
+            <td><a class="item" data-tab="efectos">Efectos</a></td>
+        </nav>
+    </div>
+    {{!-- Item Sheet Body --}}
+        <section class="sheet-body">
+          {{!-- Descripcion Tab --}}
+          <div class="tab descripcion desc armanotes" data-group="primary" data-tab="descripcion">
+            {{editor item.system.desc target="system.desc" button=true owner=owner editable=true}}
+          </div>
+          {{!-- Efectos Tab --}}
+          <div class="tab efectos desc donnotes" data-group="primary" data-tab="efectos">
+
+          </div>
+        </section>
+</form>
