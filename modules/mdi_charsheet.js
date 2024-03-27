@@ -1,3 +1,4 @@
+import {DiceRoll} from "./rolls.js";
 export default class MDI_CHAR_SHEET extends ActorSheet{
     static get defaultOptions() {
       return mergeObject(super.defaultOptions, {
@@ -198,259 +199,80 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
     async _onPericiaToggle(data)
     {
       const dataset = data;
-      switch (dataset.pericia){
-        //LAS DE BRIO
-        case 'atletismo':
-        {
-          if (dataset.current == "false"){
-            this.actor.update ({'system.brio.atletismo.valor': true});
-          }
-          else{
-            this.actor.update ({'system.brio.atletismo.valor': false});
-          }
-          break;
-        }
-        case 'equitacion':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.brio.equitacion.valor': true});
-          }
-          else{
-            this.actor.update ({'system.brio.equitacion.valor': false});
-          }
-          break;
-        }
-        case 'intimidar':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.brio.intimidar.valor': true});
-          }
-          else{
-            this.actor.update ({'system.brio.intimidar.valor': false});
-          }
-          break;
-        }
-        case 'cac':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.brio.cac.valor': true});
-          }
-          else{
-            this.actor.update ({'system.brio.cac.valor': false});
-          }
-          break;
-        }
-        case 'sinarmas':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.brio.sinarmas.valor': true});
-          }
-          else{
-            this.actor.update ({'system.brio.sinarmas.valor': false});
-          }
-          break;
-        }
-        case 'supervivencia':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.brio.supervivencia.valor': true});
-          }
-          else{
-            this.actor.update ({'system.brio.supervivencia.valor': false});
-          }
-          break;
-        }
-        //LAS DE PICARESCA
-        case 'acrobacias':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.picaresca.acrobacias.valor': true});
-          }
-          else{
-            this.actor.update ({'system.picaresca.acrobacias.valor': false});
-          }
-          break;
-        }
-        case 'enganar':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.picaresca.enganar.valor': true});
-          }
-          else{
-            this.actor.update ({'system.picaresca.enganar.valor': false});
-          }
-          break;
-        }
-        case 'perspicacia':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.picaresca.perspicacia.valor': true});
-          }
-          else{
-            this.actor.update ({'system.picaresca.perspicacia.valor': false});
-          }
-          break;
-        }
-        case 'distancia':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.picaresca.distancia.valor': true});
-          }
-          else{
-            this.actor.update ({'system.picaresca.distancia.valor': false});
-          }
-          break;
-        }
-        case 'latrocinio':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.picaresca.latrocinio.valor': true});
-          }
-          else{
-            this.actor.update ({'system.picaresca.latrocinio.valor': false});
-          }
-          break;
-        }
-        case 'sigilo':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.picaresca.sigilo.valor': true});
-          }
-          else{
-            this.actor.update ({'system.picaresca.sigilo.valor': false});
-          }
-          break;
-        }
-        //LAS DE GALANTERIA
-        case 'bajos':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.galanteria.bajos.valor': true});
-          }
-          else{
-            this.actor.update ({'system.galanteria.bajos.valor': false});
-          }
-          break;
-        }
-        case 'comercio':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.galanteria.comercio.valor': true});
-          }
-          else{
-            this.actor.update ({'system.galanteria.comercio.valor': false});
-          }
-          break;
-        }
-        case 'seduccion':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.galanteria.seduccion.valor': true});
-          }
-          else{
-            this.actor.update ({'system.galanteria.seduccion.valor': false});
-          }
-          break;
-        }
-        case 'arte':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.galanteria.arte.valor': true});
-          }
-          else{
-            this.actor.update ({'system.galanteria.arte.valor': false});
-          }
-          break;
-        }
-        case 'diplomacia':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.galanteria.diplomacia.valor': true});
-          }
-          else{
-            this.actor.update ({'system.galanteria.diplomacia.valor': false});
-          }
-          break;
-        }
-        case 'animales':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.galanteria.animales.valor': true});
-          }
-          else{
-            this.actor.update ({'system.galanteria.animales.valor': false});
-          }
-          break;
-        }
-        //LAS DE ERUDICION
-        case 'humanidades':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.erudicion.humanidades.valor': true});
-          }
-          else{
-            this.actor.update ({'system.erudicion.humanidades.valor': false});
-          }
-          break;
-        }
-        case 'ingenieria':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.erudicion.ingenieria.valor': true});
-          }
-          else{
-            this.actor.update ({'system.erudicion.ingenieria.valor': false});
-          }
-          break;
-        }
-        case 'medicina':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.erudicion.medicina.valor': true});
-          }
-          else{
-            this.actor.update ({'system.erudicion.medicina.valor': false});
-          }
-          break;
-        }
-        case 'ciencias':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.erudicion.ciencias.valor': true});
-          }
-          else{
-            this.actor.update ({'system.erudicion.ciencias.valor': false});
-          }
-          break;
-        }
-        case 'linguistica':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.erudicion.linguistica.valor': true});
-          }
-          else{
-            this.actor.update ({'system.erudicion.linguistica.valor': false});
-          }
-          break;
-        }
-        case 'navegacion':
-        {
-          if (dataset.current=="false"){
-            this.actor.update ({'system.erudicion.navegacion.valor': true});
-          }
-          else{
-            this.actor.update ({'system.erudicion.navegacion.valor': false});
-          }
-          break;
-        }
+      if (dataset.pericia==""){
+        return;
       }
+      let actor=this.actor
+      let periciaentrenada=actor.system[dataset.atributo][dataset.pericia].valor
+      let pericia="system."+dataset.atributo+"."+dataset.pericia+".valor"
+      let valor=false
+      if (periciaentrenada == false) {
+        valor=true
+      }
+      this.actor.update ({[pericia]: valor});
+      return;
     }
 
     async _onPericiaRoll(data){
       const dataset = data;
-      console.log ("PERICIA ROLL")
-      console.log (dataset)
-      
+      let actor=this.actor
+      let nombreatributo=actor.system[dataset.atributo].etiqueta
+      let valoratributo=actor.system[dataset.atributo].valor
+      let nombrepericia=""
+      let periciaentrenada=false
+      if (dataset.pericia!=""){
+        nombrepericia=" ("+actor.system[dataset.atributo][dataset.pericia].etiqueta+")";
+        periciaentrenada=actor.system[dataset.atributo][dataset.pericia].valor
+      }
+      let titulo=nombreatributo+nombrepericia
+      let html_content='<div class="dialogo">'
+      html_content+='<table><tr><td><h2><label>'+titulo+'</label></h2></td></tr></table>'
+      html_content+='<table><tr><td><h1><label>'+valoratributo+'</label></h1></td>'
+      if (periciaentrenada==true){
+        html_content+='<td><h1><label>+ 2</label></h1></td>'
+      }
+      html_content+='<td><h1><label>+</label></h1></td><td><h1><input name="modificador" id="modificador" data-dtype="Number" value="0" size=2></input></h1></td>'
+      html_content+='<td><h2><label>VS</label></h2></td><td><h1><input name="dificultad" id="dificultad" data-dtype="Number" value="5" size=2></input><h1></td>'
+      html_content+='</tr></table></div>'
+      let actor_id = this.actor._id;
+      let d = new Dialog({
+        title: titulo,
+        content: html_content,
+        buttons: {
+         desventaja: {
+          icon: '<i class="fa-solid fa-dice" style="color: darkred;"></i>',
+          label: "Desventaja",
+          callback: () => {
+            let dificultad=document.getElementById("dificultad").value;
+            let modificador=document.getElementById("modificador").value;
+            DiceRoll(actor_id,titulo,'desventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad)
+          }
+         },
+         normal: {
+          icon: '<i class="fa-solid fa-dice-six"></i>',
+          label: "Normal",
+          callback: () => {
+            let dificultad=document.getElementById("dificultad").value;
+            let modificador=document.getElementById("modificador").value;
+            DiceRoll(actor_id,titulo,'normal',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad)
+          }
+         },
+         ventaja: {
+          icon: '<i class="fa-solid fa-dice"></i>',
+          label: "Ventaja",
+          callback: () => {
+            let dificultad=document.getElementById("dificultad").value;
+            let modificador=document.getElementById("modificador").value;
+            DiceRoll(actor_id,titulo,'ventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad)
+          }
+         }
+        },
+        default: "normal",
+        render: html => console.log("Register interactivity in the rendered dialog"),
+        close: html => console.log("This always is logged no matter which option is chosen")
+       });
+       d.render(true);
+
     }
 
     async _onDiceRoll(event)

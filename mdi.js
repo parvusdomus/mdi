@@ -2,7 +2,6 @@ import MDI_CHAR_SHEET from "./modules/mdi_charsheet.js";
 import MDI_NPC_SHEET from "./modules/mdi_npcsheet.js";
 import MDI_ITEM_SHEET from "./modules/mdi_itemsheet.js";
 import {_getInitiativeFormula} from './modules/combat.js';
-import {diceToFaces} from "./modules/rolls.js";
 import mdiChat from "./modules/chat.js";
 
 
@@ -84,25 +83,6 @@ Hooks.once("init", function(){
   root.style.setProperty('--main-color',mainColor)
   let secondaryColor=game.settings.get ("mdi", "secondaryColor")
   root.style.setProperty('--secondary-color',secondaryColor)
-
-
-
-  
-
-
-  //DICE FACE HELPER
-  Handlebars.registerHelper("times", function(n, content)
-    {
-      let result = "";
-      for (let i = 0; i < n; ++i)
-      {
-          result += content.fn(i);
-      }
-    
-      return result;
-    });
-    
-  Handlebars.registerHelper("face", diceToFaces);
 
 });
 

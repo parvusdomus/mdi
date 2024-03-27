@@ -1,52 +1,168 @@
-export async function DiceRollV2(event)
+export async function DiceRoll(actor_id,rolltitle,rollType,nombreatributo, nombrepericia, valotatributo, periciaentrenada, modificador, dificultad)
 {
-    event.preventDefault();
-    const dataset = event.currentTarget.dataset;
-    let tirada= ""
-    let testResult=""
-    let nExitos=0
-    let nUnos=0
-    let rollText=""
-    let dados=[];
-    let nDice=dataset.ndice
-    let difficulty=Number(document.getElementById("ndiff").value);
-    let canSpendKarma=true
-    let actor = game.actors.get(ChatMessage.getSpeaker().actor);
-    let actor_id = ChatMessage.getSpeaker().actor;
-    if (game.user.isGM==false){
-        if (actor.system.resources.karma.value <= 0){canSpendKarma=false}
-    }
-    tirada=nDice+"d6"
-    rollText="<label>"+tirada+" VS "+difficulty+"</label>"
-    let d6Roll = await new Roll(String(tirada)).roll({async: false});
-    for (let i = 0; i < nDice; i++) {
-        if (d6Roll.terms[0].results[i].result >= difficulty){nExitos++}
-        if (d6Roll.terms[0].results[i].result == 1){nUnos++}
-        dados.push(d6Roll.terms[0].results[i].result);
-    }
-    if (nExitos >= 1){
-        testResult="<h3 class=\"regular-success\">"+game.i18n.localize("MDI.ui.regularSuccess")+"</h3>"
-        if (nExitos >= 2){
-            testResult="<h3 class=\"critical-success\">"+game.i18n.localize("MDI.ui.criticalSuccess")+"</h3>"
+    console.log ("FUNCION DE TIRADA")
+    console.log ("ACTOR ID")
+    console.log (actor_id)
+    console.log ("ROLL TYPE")
+    console.log (rollType)
+    console.log ("NOMBRE ATRIBUTO")
+    console.log (nombreatributo)
+    console.log ("NOMBRE PERICIA")
+    console.log (nombrepericia)
+    console.log ("VALOR ATRIBUTO")
+    console.log (valotatributo)
+    console.log ("PERICIA ENTRENADA?")
+    console.log (periciaentrenada)
+    console.log ("MODIFICADOR")
+    console.log (modificador)
+    console.log ("DIFICULTAD")
+    console.log (dificultad)
+    let actor=game.actors.get(actor_id)
+    let explode=false
+    let totalRoll = 0;
+    let totalRoll1 = 0;
+    let totalRoll2 = 0;
+    let dicelist = "";
+    let dicelist1 = "";
+    let dicelist2 = "";
+    let rollText="1d6";
+    let titulo=rolltitle+" VS "+dificultad;
+    let totalFinal = 0;
+    let rollResult = "";
+
+    
+    do
+	{
+        explode=false;
+		let roll = new Roll(rollText);
+		let evaluateRoll = roll.evaluate({async: false});
+        if (game.modules.get('dice-so-nice')?.active){
+            game.dice3d.showForRoll(roll,game.user,true,false,null)
         }
+        if (Number(evaluateRoll.total)===6){
+            explode = true
+            totalRoll1--
+        }
+		totalRoll1 += Number(evaluateRoll.total)
+        if (dicelist1==""){
+            dicelist1+=evaluateRoll.terms[0].results[0].result
+        }
+        else {
+            dicelist1+=" ,"+evaluateRoll.terms[0].results[0].result
+        }   
+	}while(explode);
+
+    switch (rollType){
+        case 'normal':
+        {
+          totalRoll = totalRoll1
+          dicelist = dicelist1
+          break;
+        }
+        case 'ventaja':
+        {
+            do
+            {
+                explode=false;
+                let roll = new Roll(rollText);
+                let evaluateRoll = roll.evaluate({async: false});
+                if (game.modules.get('dice-so-nice')?.active){
+                    game.dice3d.showForRoll(roll,game.user,true,false,null)
+                }
+                if (Number(evaluateRoll.total)===6){
+                    explode = true
+                    totalRoll2--
+                }
+                totalRoll2 += Number(evaluateRoll.total)
+                if (dicelist2==""){
+                    dicelist2+=evaluateRoll.terms[0].results[0].result
+                }
+                else {
+                    dicelist2+=" ,"+evaluateRoll.terms[0].results[0].result
+                }   
+            }while(explode);
+            if (totalRoll1 >= totalRoll2){
+                totalRoll=totalRoll1
+                dicelist=dicelist1
+            }
+            else{
+                totalRoll=totalRoll2
+                dicelist=dicelist2 
+            }
+          break;
+        }
+        case 'desventaja':
+        {
+            do
+            {
+                explode=false;
+                let roll = new Roll(rollText);
+                let evaluateRoll = roll.evaluate({async: false});
+                if (game.modules.get('dice-so-nice')?.active){
+                    game.dice3d.showForRoll(roll,game.user,true,false,null)
+                }
+                if (Number(evaluateRoll.total)===6){
+                    explode = true
+                    totalRoll2--
+                }
+                totalRoll2 += Number(evaluateRoll.total)
+                if (dicelist2==""){
+                    dicelist2+=evaluateRoll.terms[0].results[0].result
+                }
+                else {
+                    dicelist2+=" ,"+evaluateRoll.terms[0].results[0].result
+                }   
+            }while(explode);
+            if (totalRoll1 <= totalRoll2){
+                totalRoll=totalRoll1
+                dicelist=dicelist1
+            }
+            else{
+                totalRoll=totalRoll2
+                dicelist=dicelist2 
+            }  
+          break;
+        }
+      }
+    
+    console.log ("TIRADA 1")
+    console.log (totalRoll1)
+    console.log (dicelist1)
+    console.log ("TIRADA 2")
+    console.log (totalRoll2)
+    console.log (dicelist2)
+    console.log ("TIRADA ELEGIDA")
+    console.log (totalRoll)
+    console.log (dicelist)
+    totalFinal=Number(totalRoll)
+    totalFinal+=Number(valotatributo)
+    dicelist+=" + "+valotatributo
+    if (periciaentrenada==true){
+        totalFinal+=2
+        dicelist+=" + 2"
     }
-    else{
-        testResult="<h3 class=\"regular-failure\">"+game.i18n.localize("MDI.ui.regularFailure")+"</h3>"
+    if (Number(modificador) != 0){
+        totalFinal+=Number(modificador)
+        if (Number(modificador)>0){
+            dicelist+=" + "
+        }
+        dicelist+=modificador
     }
-    if (nUnos >= nDice){
-        testResult="<h3 class=\"critical-failure\">"+game.i18n.localize("MDI.ui.criticalFailure")+"</h3>"
-        canSpendKarma=false
+    if (totalFinal >= Number(dificultad)){
+        rollResult="<td class=\"success\">Éxito</td>"
+    }
+    else {
+        rollResult="<td class=\"failure\">Fallo</td>"
     }
 
-    let renderedRoll = await renderTemplate("systems/mdi/templates/chat/test-result.html", { 
-        rollResult: d6Roll, 
-        actor_id: actor_id,
-        dados:dados,
-        nDice: nDice,
-        rollText: rollText,
-        nDiff: difficulty,
-        canSpendKarma: canSpendKarma,
-        testResult: testResult
+    let renderedRoll = await renderTemplate("systems/mdi/templates/chat/simpleTestResult.html", { 
+        pjName: actor.name,
+        pjImage: actor.prototypeToken.texture.src,
+        rollTitle: titulo,
+        totalRoll: totalFinal, 
+        dicelist: dicelist,
+        rollResult: rollResult,
+        actor_id: actor_id
     });
 
     const chatData = {
@@ -54,27 +170,7 @@ export async function DiceRollV2(event)
         content: renderedRoll
     };
 
-    d6Roll.toMessage(chatData);
+    ChatMessage.create(chatData);
     return;
-}
 
-export function diceToFaces(value, content)
-{
-    switch (Number(value))
-    {
-        case 1:
-            return "fa-dice-one";
-        case 2:
-            return "fa-dice-two";
-        case 3:
-            return "fa-dice-three";
-        case 4:
-            return "fa-dice-four";
-        case 5:
-            return "fa-dice-five";
-        case 6:
-            return "fa-dice-six";
-    }
-
-    return "fa-dice-d6";
 }

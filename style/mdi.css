@@ -204,7 +204,6 @@
     background-size: 100% 100%;
 }
 
-
 #pause .pause-image {
     background: url("images/logo.webp");
     background-size: 128px;
@@ -259,4 +258,127 @@
     background: gray;
     color: black;
     text-shadow: none;
+}
+
+
+.dialogo table {
+    background: none;
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    text-align: center;
+}
+
+.dialogo label {
+    font-family: var(--header-font);
+    color: var(--header-text-color);
+    text-align: left;
+}
+
+.dialogo input {
+    font-family: var(--input-font);
+    background-color: none;
+    background: none;
+    color: var(--input-text-color);
+    text-align: center;
+    border: none;
+    font-size: x-large;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--input-text-color);
+}
+
+.dialogo h2, h1{
+    border-bottom: none;
+}
+
+.chat-header {
+    background: var(--chat-bg-image) no-repeat;
+    background-size: 100% 100%;
+}
+
+.chat-header table {
+    margin: 0;
+    background: none;
+    background-color:  black;
+    border: none;
+    width: 100%;
+    text-align: center;
+    font-family: Leander;
+    color: white;
+    font-weight: 900;
+}
+
+.chat-header tr:nth-child(even){
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.chat-header tr:nth-child(odd){
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.chat-header img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    color: black;
+}
+
+.chat-header td:nth-child(1){
+    text-align: left;
+    width: 40px
+}
+
+.chat-content {
+    background: var(--chat-bg-image) no-repeat;
+    background-size: 100% 100%;
+}
+
+.chat-content hr{
+    border: 2px solid black;
+}
+
+.chat-content table {
+    margin: 0;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: center;
+    font-family: Leander;
+    color: black;
+    font-weight: 900;
+}
+
+.chat-content h1 {
+    border-bottom: none;
+}
+
+.chat-content tr:nth-child(even){
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.chat-content tr:nth-child(odd){
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.failure {
+    background-color: darkred;
+    color: white;
+}
+
+.success {
+    background-color:  darkgreen;
+    color: white;
 }
