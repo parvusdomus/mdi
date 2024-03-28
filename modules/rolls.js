@@ -160,7 +160,7 @@ export async function DiceRoll(actor_id,rolltitle,rollType,nombreatributo, nombr
 
 }
 
-export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nombrepericia, valotatributo, periciaentrenada, modificador, dificultad)
+export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nombrepericia, valotatributo, periciaentrenada, modificador, dificultad, dano, modificadordano, armadura)
 {
     let actor=game.actors.get(actor_id)
     let explode=false
