@@ -204,6 +204,18 @@
     background-size: 100% 100%;
 }
 
+.window-app .window-content{
+    background-color: white;
+    background: var(--bg-image) no-repeat;
+    background-size: 100% 100%;    
+}
+
+.chat-message {
+    background-color: white;
+    background: var(--bg-image) no-repeat;
+    background-size: 100% 100%;
+}
+
 #pause .pause-image {
     background: url("images/logo.webp");
     background-size: 128px;
@@ -376,11 +388,14 @@
 }
 
 .failure {
-    background-color: darkred;
-    color: white;
+    border: solid;
+    border-width: 3px;
+    border-color: darkred;
+    color: darkred;
 }
 
-.success {
-    background-color:  darkgreen;
-    color: white;
+.success {border: solid;
+    border-width: 3px;
+    border-color: darkgreen;
+    color: darkgreen;
 }
