@@ -15,7 +15,10 @@ export async function DiceRoll(actor_id,rolltitle,rollType,nombreatributo, nombr
     let totalFinal = 0;
     let rollResult = "";
     let showbad = false;
-
+    let Fracaso1 = false;
+    let Fracaso2 = false;
+    let Fracaso = false;
+    let nVueltas = 0;
     
     do
 	{
@@ -35,14 +38,29 @@ export async function DiceRoll(actor_id,rolltitle,rollType,nombreatributo, nombr
         }
         else {
             dicelist1+=" ,"+evaluateRoll.terms[0].results[0].result
+        }
+        if (Number(evaluateRoll.total)===1 && nVueltas ===0){
+            explode = false
+            let rollfail = new Roll(rollText);
+		    let evaluateRollfail = rollfail.evaluate({async: false});
+            if (game.modules.get('dice-so-nice')?.active){
+                game.dice3d.showForRoll(rollfail,game.user,true,false,null)
+            }
+            dicelist1+=" ,"+evaluateRollfail.terms[0].results[0].result
+            if (Number(evaluateRollfail.total)===1){
+                Fracaso1 = true;
+            }
         }   
+        nVueltas++
 	}while(explode);
 
+    nVueltas = 0
     switch (rollType){
         case 'normal':
         {
           totalRoll = totalRoll1
           dicelist = dicelist1
+          Fracaso = Fracaso1
           break;
         }
         case 'ventaja':
@@ -66,17 +84,32 @@ export async function DiceRoll(actor_id,rolltitle,rollType,nombreatributo, nombr
                 }
                 else {
                     dicelist2+=" ,"+evaluateRoll.terms[0].results[0].result
-                }   
+                }
+                if (Number(evaluateRoll.total)===1 && nVueltas ===0){
+                    explode = false
+                    let rollfail = new Roll(rollText);
+                    let evaluateRollfail = rollfail.evaluate({async: false});
+                    if (game.modules.get('dice-so-nice')?.active){
+                        game.dice3d.showForRoll(rollfail,game.user,true,false,null)
+                    }
+                    dicelist2+=" ,"+evaluateRollfail.terms[0].results[0].result
+                    if (Number(evaluateRollfail.total)===1){
+                        Fracaso2 = true;
+                    }
+                } 
+                nVueltas++   
             }while(explode);
             if (totalRoll1 >= totalRoll2){
                 totalRoll=totalRoll1
                 dicelist=dicelist1
                 baddicelist=dicelist2
+                Fracaso=Fracaso1
             }
             else{
                 totalRoll=totalRoll2
                 dicelist=dicelist2 
                 baddicelist=dicelist1
+                Fracaso=Fracaso2
             }
           break;
         }
@@ -101,21 +134,36 @@ export async function DiceRoll(actor_id,rolltitle,rollType,nombreatributo, nombr
                 }
                 else {
                     dicelist2+=" ,"+evaluateRoll.terms[0].results[0].result
-                }   
+                }
+                if (Number(evaluateRoll.total)===1 && nVueltas ===0){
+                    explode = false
+                    let rollfail = new Roll(rollText);
+                    let evaluateRollfail = rollfail.evaluate({async: false});
+                    if (game.modules.get('dice-so-nice')?.active){
+                        game.dice3d.showForRoll(rollfail,game.user,true,false,null)
+                    }
+                    dicelist2+=" ,"+evaluateRollfail.terms[0].results[0].result
+                    if (Number(evaluateRollfail.total)===1){
+                        Fracaso2 = true;
+                    }
+                } 
+                nVueltas++   
             }while(explode);
             if (totalRoll1 <= totalRoll2){
                 totalRoll=totalRoll1
                 dicelist=dicelist1
                 baddicelist=dicelist2
+                Fracaso=Fracaso1
             }
             else{
                 totalRoll=totalRoll2
                 dicelist=dicelist2 
                 baddicelist=dicelist1
+                Fracaso=Fracaso2
             }  
           break;
         }
-      }
+    }
     totalFinal=Number(totalRoll)
     totalFinal+=Number(valotatributo)
     dicelistbonus+=" + "+valotatributo
@@ -135,6 +183,9 @@ export async function DiceRoll(actor_id,rolltitle,rollType,nombreatributo, nombr
     }
     else {
         rollResult="<td class=\"failure\">Fallo</td>"
+    }
+    if (Fracaso == true){
+        rollResult="<td class=\"failure\">Fallo Crítico</td>"
     }
 
     let renderedRoll = await renderTemplate("systems/mdi/templates/chat/simpleTestResult.html", { 
@@ -177,6 +228,11 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
     let totalFinal = 0;
     let rollResult = "";
     let showbad = false;
+    let Fracaso1 = false;
+    let Fracaso2 = false;
+    let Fracaso = false;
+    let nVueltas = 0;
+    let targetImage = "/systems/mdi/style/icons/uncertainty.webp";
 
     
     do
@@ -197,14 +253,29 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
         }
         else {
             dicelist1+=" ,"+evaluateRoll.terms[0].results[0].result
+        }
+        if (Number(evaluateRoll.total)===1 && nVueltas ===0){
+            explode = false
+            let rollfail = new Roll(rollText);
+		    let evaluateRollfail = rollfail.evaluate({async: false});
+            if (game.modules.get('dice-so-nice')?.active){
+                game.dice3d.showForRoll(rollfail,game.user,true,false,null)
+            }
+            dicelist1+=" ,"+evaluateRollfail.terms[0].results[0].result
+            if (Number(evaluateRollfail.total)===1){
+                Fracaso1 = true;
+            }
         }   
+        nVueltas++
 	}while(explode);
 
+    nVueltas = 0
     switch (rollType){
         case 'normal':
         {
           totalRoll = totalRoll1
           dicelist = dicelist1
+          Fracaso = Fracaso1
           break;
         }
         case 'ventaja':
@@ -228,17 +299,32 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
                 }
                 else {
                     dicelist2+=" ,"+evaluateRoll.terms[0].results[0].result
-                }   
+                }
+                if (Number(evaluateRoll.total)===1 && nVueltas ===0){
+                    explode = false
+                    let rollfail = new Roll(rollText);
+                    let evaluateRollfail = rollfail.evaluate({async: false});
+                    if (game.modules.get('dice-so-nice')?.active){
+                        game.dice3d.showForRoll(rollfail,game.user,true,false,null)
+                    }
+                    dicelist2+=" ,"+evaluateRollfail.terms[0].results[0].result
+                    if (Number(evaluateRollfail.total)===1){
+                        Fracaso2 = true;
+                    }
+                } 
+                nVueltas++   
             }while(explode);
             if (totalRoll1 >= totalRoll2){
                 totalRoll=totalRoll1
                 dicelist=dicelist1
                 baddicelist=dicelist2
+                Fracaso=Fracaso1
             }
             else{
                 totalRoll=totalRoll2
                 dicelist=dicelist2 
                 baddicelist=dicelist1
+                Fracaso=Fracaso2
             }
           break;
         }
@@ -263,21 +349,36 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
                 }
                 else {
                     dicelist2+=" ,"+evaluateRoll.terms[0].results[0].result
-                }   
+                }
+                if (Number(evaluateRoll.total)===1 && nVueltas ===0){
+                    explode = false
+                    let rollfail = new Roll(rollText);
+                    let evaluateRollfail = rollfail.evaluate({async: false});
+                    if (game.modules.get('dice-so-nice')?.active){
+                        game.dice3d.showForRoll(rollfail,game.user,true,false,null)
+                    }
+                    dicelist2+=" ,"+evaluateRollfail.terms[0].results[0].result
+                    if (Number(evaluateRollfail.total)===1){
+                        Fracaso2 = true;
+                    }
+                } 
+                nVueltas++   
             }while(explode);
             if (totalRoll1 <= totalRoll2){
                 totalRoll=totalRoll1
                 dicelist=dicelist1
                 baddicelist=dicelist2
+                Fracaso=Fracaso1
             }
             else{
                 totalRoll=totalRoll2
                 dicelist=dicelist2 
                 baddicelist=dicelist1
+                Fracaso=Fracaso2
             }  
           break;
         }
-      }
+    }
     totalFinal=Number(totalRoll)
     totalFinal+=Number(valotatributo)
     dicelistbonus+=" + "+valotatributo
@@ -299,7 +400,7 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
         rollResult="<td class=\"failure\">Fallo</td>"
     }
 
-    let renderedRoll = await renderTemplate("systems/mdi/templates/chat/simpleTestResult.html", { 
+    let renderedRoll = await renderTemplate("systems/mdi/templates/chat/weaponTestResult.html", { 
         pjName: actor.name,
         pjImage: actor.prototypeToken.texture.src,
         rollTitle: titulo,
@@ -309,6 +410,7 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
         showbad: showbad,
         baddicelist: baddicelist,
         dicelistbonus: dicelistbonus,
+        targetImage: targetImage,
         actor_id: actor_id
     });
 

@@ -345,7 +345,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
             let modificador=document.getElementById("modificador").value;
             let modificadordano=document.getElementById("modificadordano").value;
             let armadura=document.getElementById("armadura").value;
-            WeaponRoll(actor_id,titulo,'desventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad, dano, modificadordano, armadura)
+            WeaponRoll(actor_id,titulo,'desventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad, item.system.dano, modificadordano, armadura)
           }
          },
          normal: {
@@ -356,7 +356,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
             let modificador=document.getElementById("modificador").value;
             let modificadordano=document.getElementById("modificadordano").value;
             let armadura=document.getElementById("armadura").value;
-            WeaponRoll(actor_id,titulo,'normal',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad, dano, modificadordano, armadura)
+            WeaponRoll(actor_id,titulo,'normal',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad, item.system.dano, modificadordano, armadura)
           }
          },
          ventaja: {
@@ -367,7 +367,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
             let modificador=document.getElementById("modificador").value;
             let modificadordano=document.getElementById("modificadordano").value;
             let armadura=document.getElementById("armadura").value;
-            WeaponRoll(actor_id,titulo,'ventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad, dano, modificadordano, armadura)
+            WeaponRoll(actor_id,titulo,'ventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad, item.system.dano, modificadordano, armadura)
           }
          }
         },
