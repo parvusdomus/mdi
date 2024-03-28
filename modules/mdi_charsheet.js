@@ -29,6 +29,10 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       const Armaduras = [];
       const Escudos = [];
       const Objetos = [];
+      let armadura=0;
+      let defensa=0;
+      let penalizador=0;
+      let penalizadorinit=0;
       for (let i of sheetData.items){
         switch (i.type){
           case 'talento':
@@ -49,11 +53,19 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
           case 'armadura':
 				  {
 					  Armaduras.push(i);
+            if (i.system.equipada==true){
+              armadura+=Math.abs(i.system.puntuacion)
+              penalizador+=Math.abs(i.system.penalizacion)
+            }
 					  break;
 				  }
           case 'escudo':
 				  {
 					  Escudos.push(i);
+            if (i.system.equipada==true){
+              defensa+=Math.abs(i.system.puntuacion)
+              penalizadorinit+=Math.abs(i.system.penalizacion)
+            }
 					  break;
 				  }
         }
@@ -67,18 +79,26 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
         //enableKnacks: game.settings.get("mdi", "enableKnacks")
       }
       actorData.isGM = game.user.isGM;
+      this.actor.update ({ 'system.armadura.equipo': armadura });
+      this.actor.update ({ 'system.defensa.equipo': defensa });
+      this.actor.update ({ 'system.penalizador.equipo': penalizador });
+      this.actor.update ({ 'system.iniciativa.penalizador': penalizadorinit });
 
     }
 
     _calculaValores(actorData) {
       const data = actorData;
       let maxPV = 6+Number(this.actor.system.brio.valor)
-      let defensa = Math.floor((Number(this.actor.system.picaresca.valor)+Number(this.actor.system.brio.valor))/2)+4
+      let defensa = Math.floor((Number(this.actor.system.picaresca.valor)+Number(this.actor.system.brio.valor))/2)+4+Number(this.actor.system.defensa.equipo)
       let iniciativa = Math.floor((Number(this.actor.system.picaresca.valor)+Number(this.actor.system.erudicion.valor))/2)
       let fortuna = Math.floor((Number(this.actor.system.galanteria.valor)+Number(this.actor.system.erudicion.valor))/2)
+      let armadura = Number(this.actor.system.armadura.equipo)
+      let penalizador = Number(this.actor.system.penalizador.equipo)
 
       this.actor.update ({ 'system.pv.max': maxPV });
       this.actor.update ({ 'system.defensa.value': defensa });
+      this.actor.update ({ 'system.armadura.value': armadura });
+      this.actor.update ({ 'system.penalizador.value': penalizador });
       this.actor.update ({ 'system.iniciativa.value': iniciativa });
       this.actor.update ({ 'system.fortuna.max': fortuna });
       
@@ -219,6 +239,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       let valoratributo=actor.system[dataset.atributo].valor
       let nombrepericia=""
       let periciaentrenada=false
+      let penalizador=0-Number(this.actor.system.penalizador.value)
       if (dataset.pericia!=""){
         nombrepericia=" ("+actor.system[dataset.atributo][dataset.pericia].etiqueta+")";
         periciaentrenada=actor.system[dataset.atributo][dataset.pericia].valor
@@ -229,6 +250,11 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       html_content+='<table><tr><td><h1><label>'+valoratributo+'</label></h1></td>'
       if (periciaentrenada==true){
         html_content+='<td><h1><label>+ 2</label></h1></td>'
+      }
+      console.log ("PENALIZADOR")
+      console.log (penalizador)
+      if ((penalizador < 0) && ((dataset.pericia=="atletismo")||(dataset.pericia=="acrobacias")||(dataset.pericia=="sigilo"))){
+        html_content+='<td><h1><label>- '+Math.abs(penalizador)+'</label></h1></td>'
       }
       html_content+='<td><h1><label>+</label></h1></td><td><h1><input name="modificador" id="modificador" data-dtype="Number" value="0" size=2></input></h1></td>'
       html_content+='<td><h2><label>VS</label></h2></td><td><h1><input name="dificultad" id="dificultad" data-dtype="Number" value="5" size=2></input><h1></td>'
@@ -244,7 +270,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
           callback: () => {
             let dificultad=document.getElementById("dificultad").value;
             let modificador=document.getElementById("modificador").value;
-            DiceRoll(actor_id,titulo,'desventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad)
+            DiceRoll(actor_id,titulo,'desventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, dataset.pericia, penalizador, modificador, dificultad)
           }
          },
          normal: {
@@ -253,7 +279,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
           callback: () => {
             let dificultad=document.getElementById("dificultad").value;
             let modificador=document.getElementById("modificador").value;
-            DiceRoll(actor_id,titulo,'normal',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad)
+            DiceRoll(actor_id,titulo,'normal',nombreatributo, nombrepericia, valoratributo, periciaentrenada, dataset.pericia, penalizador, modificador, dificultad)
           }
          },
          ventaja: {
@@ -262,7 +288,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
           callback: () => {
             let dificultad=document.getElementById("dificultad").value;
             let modificador=document.getElementById("modificador").value;
-            DiceRoll(actor_id,titulo,'ventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad)
+            DiceRoll(actor_id,titulo,'ventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, dataset.pericia, penalizador, modificador, dificultad)
           }
          }
         },
@@ -279,14 +305,13 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
 		  const dataset = event.currentTarget.dataset;
       const actor=this.actor;
       const item = this.actor.items.get(dataset.id);
-      console.log ("ON WEAPON ROLL")
-      console.log ("DATASET")
-      console.log (dataset)
-      console.log ("ACTOR")
-      console.log (actor)
-      console.log ("ITEM")
-      console.log (item)
-      
+      let targetdefense=5
+      let targetarmor=0
+      let target= Array.from(game.user.targets)[0]?.actor;
+      if (target){
+        targetdefense=target.system.defensa.value
+        targetarmor=target.system.armadura.value
+      }
       let pericia=item.system.pericia
       let atributo=""
       switch (pericia){
@@ -323,13 +348,13 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
         html_content+='<td><h1><label>+ 2</label></h1></td>'
       }
       html_content+='<td><h1><label>+</label></h1></td><td><h1><input name="modificador" id="modificador" data-dtype="Number" value="0" size=2></input></h1></td>'
-      html_content+='<td><h2><label>VS</label></h2></td><td><h1><input name="dificultad" id="dificultad" data-dtype="Number" value="5" size=2></input><h1></td>'
+      html_content+='<td><h2><label>VS</label></h2></td><td><h1><input name="dificultad" id="dificultad" data-dtype="Number" value='+targetdefense+' size=2></input><h1></td>'
       html_content+='</tr></table>'
       html_content+='<table><tr><td><h2><label>'+item.name+'</label></h2></td></tr></table>'
       html_content+='<table><tr><td><h2><label>Daño</label></h2></td>'
       html_content+='<td><h1><label>'+item.system.dano+'</label></h1></td>'
       html_content+='<td><h1><label>+</label></h1></td><td><h1><input name="modificadordano" id="modificadordano" data-dtype="Number" value="0" size=2></input></h1></td>'
-      html_content+='<td><h2><label>Armadura</label></h2></td><td><h1><input name="armadura" id="armadura" data-dtype="Number" value="0" size=2></input><h1></td>'
+      html_content+='<td><h2><label>Armadura</label></h2></td><td><h1><input name="armadura" id="armadura" data-dtype="Number" value='+targetarmor+' size=2></input><h1></td>'
       html_content+='</tr></table>'
       html_content+='</div>'
       let actor_id = this.actor._id;

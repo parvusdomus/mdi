@@ -226,8 +226,17 @@
         </table>
         <table>
           <tr>
+            <td style="width: 70%;"><h2><label>Armadura: </label></h2></td>
+            <td style="text-align: right;"><h1><label style="font-family: var(--input-font);">{{actor.system.armadura.value}}</label></h1></td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <td style="width: 70%;"><h2><label>Iniciativa: </label></h2></td>
             <td style="text-align: right;"><h1><label style="font-family: var(--input-font);">{{actor.system.iniciativa.value}}</label></h1></td>
+            {{#if (gt actor.system.iniciativa.penalizador 0)}}
+              <td style="text-align: right;"><h1><label style="font-family: var(--input-font);">(-{{actor.system.iniciativa.penalizador}})</label></h1></td>
+            {{/if}}
           </tr>
         </table>
         <table>

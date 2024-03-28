@@ -1,4 +1,4 @@
-export async function DiceRoll(actor_id,rolltitle,rollType,nombreatributo, nombrepericia, valotatributo, periciaentrenada, modificador, dificultad)
+export async function DiceRoll(actor_id,rolltitle,rollType,nombreatributo, nombrepericia, valotatributo, periciaentrenada, pericia, penalizador, modificador, dificultad)
 {
     let actor=game.actors.get(actor_id)
     let explode=false
@@ -171,6 +171,10 @@ export async function DiceRoll(actor_id,rolltitle,rollType,nombreatributo, nombr
         totalFinal+=2
         dicelistbonus+=" + 2"
     }
+    if ((penalizador < 0) && ((pericia=="atletismo")||(pericia=="acrobacias")||(pericia=="sigilo"))){
+        totalFinal+=penalizador
+        dicelistbonus+=" "+penalizador
+    }
     if (Number(modificador) != 0){
         totalFinal+=Number(modificador)
         if (Number(modificador)>0){
@@ -233,6 +237,10 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
     let Fracaso = false;
     let nVueltas = 0;
     let targetImage = "/systems/mdi/style/icons/uncertainty.webp";
+    let target= Array.from(game.user.targets)[0]?.actor;
+      if (target){
+        targetImage=target.prototypeToken.texture.src
+      }
 
     
     do

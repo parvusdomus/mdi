@@ -125,9 +125,19 @@
                 "max": 0
             },
             "defensa": {
+                "equipo": 0,
+                "value": 0
+            },
+            "armadura": {
+                "equipo": 0,
+                "value": 0
+            },
+            "penalizador": {
+                "equipo": 0,
                 "value": 0
             },
             "iniciativa": {
+                "penalizador": 0,
                 "value": 0
             },
             "fortuna": {
