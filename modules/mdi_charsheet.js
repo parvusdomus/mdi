@@ -1,4 +1,5 @@
 import {DiceRoll} from "./rolls.js";
+import {WeaponRoll} from "./rolls.js";
 export default class MDI_CHAR_SHEET extends ActorSheet{
     static get defaultOptions() {
       return mergeObject(super.defaultOptions, {
@@ -104,7 +105,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
 		  html.find('a.item-delete').click(this._onDeleteClick.bind(this));
       html.find('a.item-equip').click(this._onEquipToggle.bind(this));
       html.find('a.pericia-click').click(this._onPericia.bind(this));
-      html.find('a.dice-roll').click(this._onDiceRoll.bind(this));
+      html.find('a.weapon-click').click(this._onWeaponRoll.bind(this));
     }
 
     _onItemCreate(event) {
@@ -155,10 +156,8 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
     async _onEquipToggle(event, data)
 	  {
       event.preventDefault();
-      console.log ("ON EQUIP")
 		  const dataset = event.currentTarget.dataset;
 		  const item = this.actor.items.get(dataset.id);
-      console.log ("ITEM")
       console.log (item)
       if (item.system.equipada==true){
         item.update ({ 'system.equipada': false });
@@ -275,11 +274,103 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
 
     }
 
-    async _onDiceRoll(event)
-    {
+    async _onWeaponRoll(event, data){
       event.preventDefault();
-      DiceRollV2(event);
-      return;
+		  const dataset = event.currentTarget.dataset;
+      const actor=this.actor;
+      const item = this.actor.items.get(dataset.id);
+      console.log ("ON WEAPON ROLL")
+      console.log ("DATASET")
+      console.log (dataset)
+      console.log ("ACTOR")
+      console.log (actor)
+      console.log ("ITEM")
+      console.log (item)
+      
+      let pericia=item.system.pericia
+      let atributo=""
+      switch (pericia){
+        case 'cac':
+        {
+          atributo="brio"
+          break;
+        }
+        case 'sinarmas':
+        {
+          atributo="brio"
+          break;
+        }
+        case 'atletismo':
+        {
+          atributo="brio"
+          break;
+        }
+        case 'distancia':
+        {
+          atributo="picaresca"
+          break;
+        }
+      }
+      let nombreatributo=actor.system[atributo].etiqueta
+      let valoratributo=actor.system[atributo].valor
+      let nombrepericia=" ("+actor.system[atributo][pericia].etiqueta+")";
+      let periciaentrenada=actor.system[atributo][pericia].valor
+      let titulo=nombreatributo+nombrepericia
+      let html_content='<div class="dialogo">'
+      html_content+='<table><tr><td><h2><label>'+titulo+'</label></h2></td></tr></table>'
+      html_content+='<table><tr><td><h1><label>'+valoratributo+'</label></h1></td>'
+      if (periciaentrenada==true){
+        html_content+='<td><h1><label>+ 2</label></h1></td>'
+      }
+      html_content+='<td><h1><label>+</label></h1></td><td><h1><input name="modificador" id="modificador" data-dtype="Number" value="0" size=2></input></h1></td>'
+      html_content+='<td><h2><label>VS</label></h2></td><td><h1><input name="dificultad" id="dificultad" data-dtype="Number" value="5" size=2></input><h1></td>'
+      html_content+='</tr></table>'
+      html_content+='<table><tr><td><h2><label>'+item.name+'</label></h2></td></tr></table>'
+      html_content+='<table><tr><td><h2><label>Daño</label></h2></td>'
+      html_content+='<td><h1><label>'+item.system.dano+'</label></h1></td>'
+      html_content+='<td><h1><label>+</label></h1></td><td><h1><input name="modificadordano" id="modificadordano" data-dtype="Number" value="0" size=2></input></h1></td>'
+      html_content+='<td><h2><label>Armadura</label></h2></td><td><h1><input name="armadura" id="armadura" data-dtype="Number" value="0" size=2></input><h1></td>'
+      html_content+='</tr></table>'
+      html_content+='</div>'
+      let actor_id = this.actor._id;
+      let d = new Dialog({
+        title: titulo,
+        content: html_content,
+        buttons: {
+         desventaja: {
+          icon: '<i class="fa-solid fa-dice" style="color: darkred;"></i>',
+          label: "Desventaja",
+          callback: () => {
+            let dificultad=document.getElementById("dificultad").value;
+            let modificador=document.getElementById("modificador").value;
+            WeaponRoll(actor_id,titulo,'desventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad)
+          }
+         },
+         normal: {
+          icon: '<i class="fa-solid fa-dice-six"></i>',
+          label: "Normal",
+          callback: () => {
+            let dificultad=document.getElementById("dificultad").value;
+            let modificador=document.getElementById("modificador").value;
+            WeaponRoll(actor_id,titulo,'normal',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad)
+          }
+         },
+         ventaja: {
+          icon: '<i class="fa-solid fa-dice"></i>',
+          label: "Ventaja",
+          callback: () => {
+            let dificultad=document.getElementById("dificultad").value;
+            let modificador=document.getElementById("modificador").value;
+            WeaponRoll(actor_id,titulo,'ventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, modificador, dificultad)
+          }
+         }
+        },
+        default: "normal",
+        render: html => console.log("Register interactivity in the rendered dialog"),
+        close: html => console.log("This always is logged no matter which option is chosen")
+       });
+       d.render(true);
+
     }
   
   }
