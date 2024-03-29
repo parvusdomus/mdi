@@ -32,57 +32,15 @@ Hooks.once("init", function(){
 
   console.log("test | INITIALIZING MDI SETTINGS...");
 
-  game.settings.register('mdi', 'bgImage', {
-    name: game.i18n.localize("MDI.config.bgImageName"),
-    hint: game.i18n.localize("MDI.config.bgImageHint"),
-    type: String,
-    default: 'systems/mdi/style/images/white.webp',
+  game.settings.register('mdi', 'activarMiedo', {
+    name: "Activar Miedo",
+    hint: "Activa en la ficha el contador de Voluntad y de estados de Miedo",
+    type: Boolean,
+    default: false,
     scope: 'world',
-    requiresReload: true,
-    config: true,
-    filePicker: 'image',
+    requiresReload: false,
+    config: true
   });
-
-  game.settings.register('mdi', 'chatBgImage', {
-    name: game.i18n.localize("MDI.config.chatBgImageName"),
-    hint: game.i18n.localize("MDI.config.chatBgImageHint"),
-    type: String,
-    default: 'systems/mdi/style/images/white.webp',
-    scope: 'world',
-    requiresReload: true,
-    config: true,
-    filePicker: 'image',
-  });
-
-  game.settings.register('mdi', 'mainColor', {
-      name: game.i18n.localize("MDI.config.mainColorName"),
-      hint: game.i18n.localize("MDI.config.mainColorHint"),
-      scope: 'world',
-      requiresReload: true,
-      config: true,
-      type: String,
-      default: '#395F64',
-  });
-
-  game.settings.register('mdi', 'secondaryColor', {
-    name: game.i18n.localize("MDI.config.secondaryColorName"),
-    hint: game.i18n.localize("MDI.config.secondaryColorHint"),
-    scope: 'world',
-    requiresReload: true,
-    config: true,
-    type: String,
-    default: '#AEB7BA',
-  }); 
-
-  const root = document.querySelector(':root');
-  let bgImagePath="url(../../../"+game.settings.get ("mdi", "bgImage")+")"
-  root.style.setProperty('--bg-image',bgImagePath)
-  let chatbgImagePath="url(../../../"+game.settings.get ("mdi", "chatBgImage")+")"
-  root.style.setProperty('--chat-bg-image',chatbgImagePath)
-  let mainColor=game.settings.get ("mdi", "mainColor")
-  root.style.setProperty('--main-color',mainColor)
-  let secondaryColor=game.settings.get ("mdi", "secondaryColor")
-  root.style.setProperty('--secondary-color',secondaryColor)
 
 });
 
@@ -92,13 +50,6 @@ Hooks.on("renderPause", () => {
   $("#pause figcaption").attr("class", "pause-mdi");
 });
 
-Hooks.on('renderSettingsConfig', (app, el, data) => {
-  // Insert color picker input
-  el.find('[name="mdi.mainColor"]').parent()
-    .append(`<input type="color" value="${game.settings.get('mdi','mainColor')}" data-edit="mdi.mainColor">`)
-  el.find('[name="mdi.secondaryColor"]').parent()
-    .append(`<input type="color" value="${game.settings.get('mdi','secondaryColor')}" data-edit="mdi.secondaryColor">`) 
-});
 
 Hooks.on('renderChatLog', (app, html, data) => mdiChat.chatListeners(html))
 

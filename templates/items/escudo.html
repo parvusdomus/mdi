@@ -13,20 +13,7 @@
             <td colspan="2"><h2><input name="system.precio" type="text" value="{{item.system.precio}}" data-dtype="String"/></h2></td>
           </tr>
       </table>
-        <nav class="sheet-tabs tabs" data-group="primary">
-            <td><a class="item" data-tab="descripcion">Descripción</a></td>
-            <td><a class="item" data-tab="efectos">Efectos</a></td>
-        </nav>
-    </div>
-    {{!-- Item Sheet Body --}}
-        <section class="sheet-body">
-          {{!-- Descripcion Tab --}}
-          <div class="tab descripcion desc armanotes" data-group="primary" data-tab="descripcion">
-            {{editor item.system.desc target="system.desc" button=true owner=owner editable=true}}
-          </div>
-          {{!-- Efectos Tab --}}
-          <div class="tab efectos desc donnotes" data-group="primary" data-tab="efectos">
-
-          </div>
-        </section>
+      <div class="armanotes" data-group="primary" data-tab="descripcion">
+        {{editor item.system.desc target="system.desc" button=true owner=owner editable=true}}
+      </div>
 </form>
