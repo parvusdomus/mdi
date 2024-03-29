@@ -231,11 +231,13 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
     let titulo=rolltitle+" VS "+dificultad;
     let totalFinal = 0;
     let rollResult = "";
+    let resultList = "";
     let showbad = false;
     let Fracaso1 = false;
     let Fracaso2 = false;
     let Fracaso = false;
     let nVueltas = 0;
+    let danototal = 0;
     let targetImage = "/systems/mdi/style/icons/uncertainty.webp";
     let target= Array.from(game.user.targets)[0]?.actor;
       if (target){
@@ -402,10 +404,27 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
         dicelistbonus+=modificador
     }
     if (totalFinal >= Number(dificultad)){
-        rollResult="<td class=\"success\">Éxito</td>"
+        danototal = (Number(totalFinal) + Number(dano) + Number(modificadordano)) - (Number(dificultad) + Number(armadura))
+        if (danototal < 0){
+            danototal = 0
+        }
+        rollResult="<td class=\"success aplicadano\" data-dano="+danototal+">Daño: "+danototal+"</td>"
+        resultList="<td>("+totalFinal+"+"+dano
+        if (modificadordano != 0){
+            resultList+="+"+modificadordano
+        }
+        resultList+=") - ("+dificultad
+        if (armadura != 0){
+            resultList+="+"+armadura
+        }
+        resultList+=")</td>"
+        
     }
     else {
         rollResult="<td class=\"failure\">Fallo</td>"
+    }
+    if (Fracaso == true){
+        rollResult="<td class=\"failure\">Fallo Crítico</td>"
     }
 
     let renderedRoll = await renderTemplate("systems/mdi/templates/chat/weaponTestResult.html", { 
@@ -415,6 +434,7 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
         totalRoll: totalFinal, 
         dicelist: dicelist,
         rollResult: rollResult,
+        resultList: resultList,
         showbad: showbad,
         baddicelist: baddicelist,
         dicelistbonus: dicelistbonus,
