@@ -1,8 +1,8 @@
 import MDI_CHAR_SHEET from "./modules/mdi_charsheet.js";
 import MDI_NPC_SHEET from "./modules/mdi_npcsheet.js";
 import MDI_ITEM_SHEET from "./modules/mdi_itemsheet.js";
-import {_getInitiativeFormula} from './modules/combat.js';
 import mdiChat from "./modules/chat.js";
+import {InitiativeRoll} from './modules/combat.js';
 
 
 
@@ -55,6 +55,14 @@ Hooks.on('renderChatLog', (app, html, data) => mdiChat.chatListeners(html))
 
 Hooks.on('refreshToken', () => {
 
+})
+
+Hooks.on('createCombatant', async (combatant) => {
+  console.log ("COMBATANT")
+  console.log (combatant.actorId)
+  let total = await InitiativeRoll (combatant.actorId)
+  console.log (total)
+  combatant.update ({'initiative': total})
 })
 
 Hooks.on("createActor", async (actor) =>{
