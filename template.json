@@ -140,6 +140,11 @@
                 "penalizador": 0,
                 "value": 0
             },
+            "voluntad": {
+                "penalizador": 0,
+                "value": 0,
+                "estado": "normal"
+            },
             "fortuna": {
                 "value": 0,
                 "min": 0,

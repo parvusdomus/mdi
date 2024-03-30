@@ -232,7 +232,7 @@
         </table>
         <table>
           <tr>
-            <td style="width: 70%;"><h2><label>Iniciativa: </label></h2></td>
+            <td style="width: 70%;"><a class="iniciativa-click"><h2><label>Iniciativa: </label></h2></a></td>
             <td style="text-align: right;"><h1><label style="font-family: var(--input-font);">{{actor.system.iniciativa.value}}</label></h1></td>
             {{#if (gt actor.system.iniciativa.penalizador 0)}}
               <td style="text-align: right;"><h1><label style="font-family: var(--input-font);">(-{{actor.system.iniciativa.penalizador}})</label></h1></td>
@@ -247,6 +247,26 @@
             <td style="text-align: right;"><h1><label style="font-family: var(--input-font);">{{actor.system.fortuna.max}}</label></h1></td>
           </tr>
         </table>
+        {{#if (eq settings.activarMiedo true)}}
+          <table>
+            <tr>
+              {{#if (eq actor.system.voluntad.estado "normal")}}
+                <td><a class="estado-click"><h2><label><i class="fa-solid fa-face-smile"></i></label></h2></a></td>
+              {{/if}}
+              {{#if (eq actor.system.voluntad.estado "asustado")}}
+                <td><a class="estado-click"><h2><label><i class="fa-solid fa-face-surprise"></i></label></h2></a></td>
+              {{/if}}
+              {{#if (eq actor.system.voluntad.estado "aterrorizado")}}
+                <td><a class="estado-click"><h2><label><i class="fa-solid fa-face-tired"></i></label></h2></a></td>
+              {{/if}}
+              {{#if (eq actor.system.voluntad.estado "trastornado")}}
+                <td><a class="estado-click"><h2><label><i class="fa-solid fa-face-scream"></i></label></h2></a></td>
+              {{/if}}
+              <td style="width: 70%;"><a class="voluntad-click"><h2><label>Voluntad: </label></h2></a></td>
+              <td style="text-align: right;"><h1><label style="font-family: var(--input-font);">{{actor.system.voluntad.value}}</label></h1></td>
+            </tr>
+          </table>
+        {{/if}}
       </div>
     </section>
     <section class="right-section">

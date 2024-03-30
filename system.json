@@ -2,7 +2,7 @@
     "id": "mdi",
     "title": "Máscaras del Imperio",
     "description": "Sistema para jugar a Máscaras del Imperio",
-    "version": "0.3.0",
+    "version": "1.0.0",
     "authors": [
       {
         "name": "ParvusDomus",
@@ -38,8 +38,8 @@
     "initiative": "-1",
     "gridDistance": 2,
     "gridUnits": "m",
-    "primaryTokenAttribute": "resources.resolve",
-    "secondaryTokenAttribute": "resources.karma",
+    "primaryTokenAttribute": "pv",
+    "secondaryTokenAttribute": "fortuna",
     "url": "https://github.com/parvusdomus/mdi",
     "manifest": "https://github.com/parvusdomus/mdi/releases/latest/download/system.json",
     "download": "https://github.com/parvusdomus/mdi/releases/latest/download/mdi.zip",
