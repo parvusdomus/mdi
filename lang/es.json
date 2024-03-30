@@ -1,6 +1,6 @@
 {
     "TYPES.Actor.Jugador": "Encubierto",
-    "TYPES.Actor.PNJ": "Personaje No Jugador",
+    "TYPES.Actor.PNJ": "Enemigo",
     "TYPES.Item.talento": "Talento",
     "TYPES.Item.objeto": "Objeto",
     "TYPES.Item.arma": "Arma",

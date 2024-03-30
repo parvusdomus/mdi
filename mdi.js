@@ -12,11 +12,7 @@ Hooks.once("init", function(){
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("mdi", MDI_CHAR_SHEET, {
     makeDefault: true,
-    types: ['Jugador']
-  });
-  Actors.registerSheet("mdi", MDI_NPC_SHEET, {
-    makeDefault: true,
-    types: ['NPC']
+    types: ['Jugador','PNJ']
   });
   console.log("test | INITIALIZING MDI ITEM SHEETS...");
   Items.unregisterSheet("core", ItemSheet);
@@ -64,16 +60,29 @@ Hooks.on('createCombatant', async (combatant) => {
 
 Hooks.on("createActor", async (actor) =>{
   const PJImage="systems/mdi/style/icons/duality-mask.svg"
-  const NPCImage="systems/custos/style/icons/roman-toga.svg"
+  const NPCImage="systems/mdi/style/icons/overkill.svg"
   if (actor.img=="icons/svg/mystery-man.svg"){
     switch (actor.type){
       case 'Jugador':
       {
+        actor.updateSource({"prototypeToken.actorLink": true});
+        actor.updateSource({"prototypeToken.bar1.attribute": "pv"});
+        actor.updateSource({"prototypeToken.bar2.attribute": "fortuna"});
+        actor.updateSource({"prototypeToken.displayBars": "50"});
+        actor.updateSource({"prototypeToken.displayName": "50"});
+        actor.updateSource({"prototypeToken.disposition": "1"});
         actor.update ({ 'img': PJImage });
         break;
       }
-      case 'npc':
+      case 'PNJ':
       {
+        actor.updateSource({"prototypeToken.actorLink": false});
+        actor.updateSource({"prototypeToken.bar1.attribute": "pv"});
+        actor.updateSource({"prototypeToken.bar2.attribute": "fortuna"});
+        actor.updateSource({"prototypeToken.displayBars": "40"});
+        actor.updateSource({"prototypeToken.displayName": "40"});
+        actor.updateSource({"prototypeToken.disposition": "-1"});
+        actor.updateSource({"prototypeToken.appendNumber": true});
         actor.update ({ 'img': NPCImage });
         break;
       }

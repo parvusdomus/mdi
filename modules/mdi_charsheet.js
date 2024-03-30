@@ -15,10 +15,10 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
     }
     getData() {
       const data = super.getData();
-      if (this.actor.type == 'Jugador') {
+      //if (this.actor.type == 'Jugador') {
         this._prepareCharacterItems(data);
         this._calculaValores(data);
-      }
+      //}
       return data;
     }
 
