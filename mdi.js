@@ -1,5 +1,4 @@
 import MDI_CHAR_SHEET from "./modules/mdi_charsheet.js";
-import MDI_NPC_SHEET from "./modules/mdi_npcsheet.js";
 import MDI_ITEM_SHEET from "./modules/mdi_itemsheet.js";
 import mdiChat from "./modules/chat.js";
 import {InitiativeRoll} from './modules/combat.js';
@@ -33,6 +32,16 @@ Hooks.once("init", function(){
     hint: "Activa en la ficha el contador de Voluntad y de estados de Miedo",
     type: Boolean,
     default: false,
+    scope: 'world',
+    requiresReload: false,
+    config: true
+  });
+
+  game.settings.register('mdi', 'activarTooltips', {
+    name: "Activar descripciones emergentes",
+    hint: "Activa en la ficha las descripciones emergentes",
+    type: Boolean,
+    default: true,
     scope: 'world',
     requiresReload: false,
     config: true

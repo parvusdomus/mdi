@@ -13,6 +13,11 @@
     src: url("../../../systems/mdi/style/fonts/Seaweed.ttf");
 }
 
+@font-face {
+    font-family: "Flying";
+    src: url("../../../systems/mdi/style/fonts/flyingleatherv2straight.ttf");
+}
+
 .charsheet {
     display: flex;
   }
@@ -193,7 +198,7 @@
     --chat-bg-image: url("../../../systems/mdi/style/images/white.webp");
     --header-font: "Leander";
     --input-font: "Seaweed";
-    --pause-font: "Cardinal";
+    --pause-font: "Flying";
     --header-text-color: black;
     --input-text-color: darkred;
 }
@@ -398,4 +403,44 @@
     border-width: 3px;
     border-color: darkgreen;
     color: darkgreen;
+}
+
+.tooltip {
+    position: relative;
+}
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: white;
+    color: darkred;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+  
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+  
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }

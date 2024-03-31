@@ -76,7 +76,8 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       actorData.Escudos = Escudos;
       actorData.Objetos = Objetos;
       actorData.settings = {
-        activarMiedo: game.settings.get("mdi", "activarMiedo")
+        activarMiedo: game.settings.get("mdi", "activarMiedo"),
+        activarTooltips: game.settings.get("mdi", "activarTooltips")
       }
       actorData.isGM = game.user.isGM;
       this.actor.update ({ 'system.armadura.equipo': armadura });
