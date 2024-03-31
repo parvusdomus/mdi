@@ -210,8 +210,8 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       const dataset = event.currentTarget.dataset;
       console.log ("dataset")
       Dialog.confirm({
-        title: game.i18n.localize("MDI.ui.deleteTitle"),
-			  content: game.i18n.localize("MDI.ui.deleteText"),
+        title: "Borrar objeto",
+			  content: "¿Estás seguro de que quieres borrar eso?",
         yes: () => this.actor.deleteEmbeddedDocuments("Item", [dataset.id]),
         no: () => {},
         defaultYes: false

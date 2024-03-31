@@ -42,9 +42,9 @@ export async function InitiativeRoll(actor_id)
             if (game.modules.get('dice-so-nice')?.active){
                 game.dice3d.showForRoll(rollfail,game.user,true,false,null)
             }
+            dicelist+=" ,"+evaluateRollfail.terms[0].results[0].result
             if (Number(evaluateRollfail.total)===1){
                 Fracaso = true;
-                dicelist+=" ,1"
             }
         }   
         nVueltas++
