@@ -102,9 +102,11 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
     let nVueltas = 0;
     let danototal = 0;
     let targetImage = "/systems/mdi/style/icons/uncertainty.webp";
+    let targetName = ""
     let target= Array.from(game.user.targets)[0]?.actor;
       if (target){
         targetImage=target.prototypeToken.texture.src
+        targetName=target.name
       }
 
     
@@ -302,6 +304,7 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
         baddicelist: baddicelist,
         dicelistbonus: dicelistbonus,
         targetImage: targetImage,
+        targetName: targetName,
         actor_id: actor_id
     });
 
