@@ -98,3 +98,34 @@ Hooks.on("createActor", async (actor) =>{
     }
   }
 })
+
+Hooks.on("createItem", async (item) =>{
+  const talentoImage="systems/mdi/style/icons/juggler.svg"
+  const armaImage="systems/mdi/style/icons/crossed-sabres.svg"
+  const armaduraImage="systems/mdi/style/icons/armor-vest.svg"
+  const escudoImage="systems/mdi/style/icons/cross-shield.svg"
+  if (item.img=="icons/svg/item-bag.svg"){
+    switch (item.type){
+      case 'talento':
+      {
+        item.update ({ 'img': talentoImage });
+        break;
+      }
+      case 'arma':
+      {
+        item.update ({ 'img': armaImage });
+        break;
+      }
+      case 'armadura':
+      {
+        item.update ({ 'img': armaduraImage });
+        break;
+      }
+      case 'escudo':
+      {
+        item.update ({ 'img': escudoImage });
+        break;
+      }
+    }
+  }
+})
