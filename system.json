@@ -2,7 +2,7 @@
     "id": "mdi",
     "title": "Máscaras del Imperio",
     "description": "Sistema NO OFICIAL para jugar a Máscaras del Imperio",
-    "version": "1.0.4",
+    "version": "1.1.0",
     "authors": [
       {
         "name": "ParvusDomus",
@@ -26,7 +26,30 @@
         "thumbnail": "systems/mdi/style/images/completo.webp"
       }
     ],
-  
+    "packs": [
+      {
+        "name": "creacion-de-personaje",
+        "label": "Creación de Personaje",
+        "path": "packs/creacion-de-personaje",
+        "type": "Item",
+        "ownership": {
+          "PLAYER": "OBSERVER",
+          "ASSISTANT": "OWNER"
+        },
+        "system": "mdi"
+      },
+      {
+        "name": "rivales",
+        "label": "Rivales",
+        "path": "packs/rivales",
+        "type": "Actor",
+        "ownership": {
+          "PLAYER": "OBSERVER",
+          "ASSISTANT": "OWNER"
+        },
+        "system": "mdi"
+      }
+    ],
     "languages": [
       {
         "lang": "es",
