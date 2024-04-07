@@ -1,4 +1,6 @@
 import MDI_CHAR_SHEET from "./modules/mdi_charsheet.js";
+import MDI_VILLANO_SHEET from "./modules/mdi_villanosheet.js";
+import MDI_ESBIRRO_SHEET from "./modules/mdi_esbirrosheet.js";
 import MDI_ITEM_SHEET from "./modules/mdi_itemsheet.js";
 import mdiChat from "./modules/chat.js";
 import {InitiativeRoll} from './modules/combat.js';
@@ -11,8 +13,17 @@ Hooks.once("init", function(){
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("mdi", MDI_CHAR_SHEET, {
     makeDefault: true,
-    types: ['Jugador','PNJ']
+    types: ['Jugador']
   });
+  Actors.registerSheet("mdi", MDI_VILLANO_SHEET, {
+    makeDefault: true,
+    types: ['Villano','Sobrenatural']
+  });
+  Actors.registerSheet("mdi", MDI_ESBIRRO_SHEET, {
+    makeDefault: true,
+    types: ['Esbirro', 'Animal', 'Lugarteniente']
+  });
+
   console.log("test | INITIALIZING MDI ITEM SHEETS...");
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("mdi", MDI_ITEM_SHEET,{
@@ -69,7 +80,11 @@ Hooks.on('createCombatant', async (combatant) => {
 
 Hooks.on("createActor", async (actor) =>{
   const PJImage="systems/mdi/style/icons/duality-mask.svg"
-  const NPCImage="systems/mdi/style/icons/overkill.svg"
+  const EsbirroImage="systems/mdi/style/icons/overkill.svg"
+  const LugartenienteImage="systems/mdi/style/icons/pyromaniac.svg"
+  const AnimalImage="systems/mdi/style/icons/fangs.svg"
+  const VillanoImage="systems/mdi/style/icons/crowned-skull.svg"
+  const SobrenaturalImage="systems/mdi/style/icons/spark-spirit.svg"
   if (actor.img=="icons/svg/mystery-man.svg"){
     switch (actor.type){
       case 'Jugador':
@@ -83,7 +98,7 @@ Hooks.on("createActor", async (actor) =>{
         actor.update ({ 'img': PJImage });
         break;
       }
-      case 'PNJ':
+      case 'Esbirro':
       {
         actor.updateSource({"prototypeToken.actorLink": false});
         actor.updateSource({"prototypeToken.bar1.attribute": "pv"});
@@ -92,7 +107,55 @@ Hooks.on("createActor", async (actor) =>{
         actor.updateSource({"prototypeToken.displayName": "40"});
         actor.updateSource({"prototypeToken.disposition": "-1"});
         actor.updateSource({"prototypeToken.appendNumber": true});
-        actor.update ({ 'img': NPCImage });
+        actor.update ({ 'img': EsbirroImage });
+        break;
+      }
+      case 'Lugarteniente':
+      {
+        actor.updateSource({"prototypeToken.actorLink": false});
+        actor.updateSource({"prototypeToken.bar1.attribute": "pv"});
+        actor.updateSource({"prototypeToken.bar2.attribute": "fortuna"});
+        actor.updateSource({"prototypeToken.displayBars": "40"});
+        actor.updateSource({"prototypeToken.displayName": "40"});
+        actor.updateSource({"prototypeToken.disposition": "-1"});
+        actor.updateSource({"prototypeToken.appendNumber": true});
+        actor.update ({ 'img': LugartenienteImage });
+        break;
+      }
+      case 'Animal':
+      {
+        actor.updateSource({"prototypeToken.actorLink": false});
+        actor.updateSource({"prototypeToken.bar1.attribute": "pv"});
+        actor.updateSource({"prototypeToken.bar2.attribute": "fortuna"});
+        actor.updateSource({"prototypeToken.displayBars": "40"});
+        actor.updateSource({"prototypeToken.displayName": "40"});          
+        actor.updateSource({"prototypeToken.disposition": "-1"});
+        actor.updateSource({"prototypeToken.appendNumber": true});
+        actor.update ({ 'img': AnimalImage });
+        break;
+      }
+      case 'Villano':
+      {
+        actor.updateSource({"prototypeToken.actorLink": true});
+        actor.updateSource({"prototypeToken.bar1.attribute": "pv"});
+        actor.updateSource({"prototypeToken.bar2.attribute": "fortuna"});
+        actor.updateSource({"prototypeToken.displayBars": "40"});
+        actor.updateSource({"prototypeToken.displayName": "40"});          
+        actor.updateSource({"prototypeToken.disposition": "-1"});
+        actor.updateSource({"prototypeToken.appendNumber": true});
+        actor.update ({ 'img': VillanoImage });
+        break;
+      }
+      case 'Sobrenatural':
+      {
+        actor.updateSource({"prototypeToken.actorLink": false});
+        actor.updateSource({"prototypeToken.bar1.attribute": "pv"});
+        actor.updateSource({"prototypeToken.bar2.attribute": "fortuna"});
+        actor.updateSource({"prototypeToken.displayBars": "40"});
+        actor.updateSource({"prototypeToken.displayName": "40"});          
+        actor.updateSource({"prototypeToken.disposition": "-1"});
+        actor.updateSource({"prototypeToken.appendNumber": true});
+        actor.update ({ 'img': SobrenaturalImage });
         break;
       }
     }

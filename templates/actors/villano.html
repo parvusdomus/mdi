@@ -1,0 +1,333 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <div class="charsheet">
+    <section class="left-section">
+      <div class="char-name"><h1><input name="name" type="text" value="{{actor.name}}" placeholder='Nombre' onClick="this.select();"/></h2></div>
+      <div  class="habilidad">
+        <table>
+          <tr>
+            <td style="width: 80%; text-align: left;"><h2><a class="pericia-click" data-pericia="" data-atributo="brio"><label>{{this.actor.system.brio.etiqueta}}</label></a></h2></td>
+            <td><h1><input name="system.brio.valor" type="number" maxlength="2" size="2" value="{{actor.system.brio.valor}}" data-dtype="Number"/></h1></td>
+          </tr>
+        </table>
+      </div>
+      <div class="pericia tooltip">
+        <table>
+          <tr>
+            {{#if (eq actor.system.brio.atletismo.valor true)}}
+              <td><a class="pericia-click" data-pericia="atletismo" data-atributo="brio"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.brio.atletismo.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="atletismo" data-atributo="brio"><label>{{this.actor.system.brio.atletismo.etiqueta}}</label></a></td>
+            {{/if}}
+            {{#if (eq actor.system.brio.cac.valor true)}}
+              <td><a class="pericia-click" data-pericia="cac"  data-atributo="brio"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.brio.cac.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="cac"  data-atributo="brio"><label>{{this.actor.system.brio.cac.etiqueta}}</label></a></td>
+            {{/if}}
+          </tr>
+          <tr>
+            {{#if (eq actor.system.brio.equitacion.valor true)}}
+              <td><a class="pericia-click" data-pericia="equitacion"  data-atributo="brio"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.brio.equitacion.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="equitacion"  data-atributo="brio"><label>{{this.actor.system.brio.equitacion.etiqueta}}</label></a></td>
+            {{/if}}
+            {{#if (eq actor.system.brio.sinarmas.valor true)}}
+              <td><a class="pericia-click" data-pericia="sinarmas"  data-atributo="brio"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.brio.sinarmas.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="sinarmas"  data-atributo="brio"><label>{{this.actor.system.brio.sinarmas.etiqueta}}</label></a></td>
+            {{/if}}
+          </tr>
+          <tr>
+            {{#if (eq actor.system.brio.intimidar.valor true)}}
+              <td><a class="pericia-click" data-pericia="intimidar"  data-atributo="brio"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.brio.intimidar.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="intimidar"   data-atributo="brio"><label>{{this.actor.system.brio.intimidar.etiqueta}}</label></a></td>
+            {{/if}}
+            {{#if (eq actor.system.brio.supervivencia.valor true)}}
+              <td><a class="pericia-click" data-pericia="supervivencia"  data-atributo="brio"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.brio.supervivencia.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="supervivencia"  data-atributo="brio"><label>{{this.actor.system.brio.supervivencia.etiqueta}}</label></a></td>
+            {{/if}}
+          </tr>
+        </table>
+        {{#if (eq settings.activarTooltips true)}}
+          <span class="tooltiptext">
+            <label>Click para lanzar<br>Shift+click para activar/desactivar</label>
+          </span>
+        {{/if}}
+      </div>
+
+      <div  class="habilidad">
+        <table>
+          <tr>
+            <td style="width: 80%; text-align: left;"><h2><a class="pericia-click" data-pericia=""  data-atributo="picaresca"><label>{{this.actor.system.picaresca.etiqueta}}</label></a></h2></td>
+            <td><h1><input name="system.picaresca.valor" type="number" maxlength="2" size="2" value="{{actor.system.picaresca.valor}}" data-dtype="Number"/></h1></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="pericia tooltip">
+        <table>
+          <tr>
+            {{#if (eq actor.system.picaresca.acrobacias.valor true)}}
+              <td><a class="pericia-click" data-pericia="acrobacias"  data-atributo="picaresca"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.picaresca.acrobacias.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="acrobacias"  data-atributo="picaresca"><label>{{this.actor.system.picaresca.acrobacias.etiqueta}}</label></a></td>
+            {{/if}}
+            {{#if (eq actor.system.picaresca.distancia.valor true)}}
+              <td><a class="pericia-click" data-pericia="distancia"  data-atributo="picaresca"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.picaresca.distancia.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="distancia"  data-atributo="picaresca"><label>{{this.actor.system.picaresca.distancia.etiqueta}}</label></a></td>
+            {{/if}}
+          </tr>
+          <tr>
+            {{#if (eq actor.system.picaresca.enganar.valor true)}}
+              <td><a class="pericia-click" data-pericia="enganar"  data-atributo="picaresca"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.picaresca.enganar.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="enganar"  data-atributo="picaresca"><label>{{this.actor.system.picaresca.enganar.etiqueta}}</label></a></td>
+            {{/if}}
+            {{#if (eq actor.system.picaresca.latrocinio.valor true)}}
+              <td><a class="pericia-click" data-pericia="latrocinio"  data-atributo="picaresca"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.picaresca.latrocinio.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="latrocinio"  data-atributo="picaresca"><label>{{this.actor.system.picaresca.latrocinio.etiqueta}}</label></a></td>
+            {{/if}}
+          </tr>
+          <tr>
+            {{#if (eq actor.system.picaresca.perspicacia.valor true)}}
+              <td><a class="pericia-click" data-pericia="perspicacia"  data-atributo="picaresca"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.picaresca.perspicacia.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="perspicacia"  data-atributo="picaresca"><label>{{this.actor.system.picaresca.perspicacia.etiqueta}}</label></a></td>
+            {{/if}}
+            {{#if (eq actor.system.picaresca.sigilo.valor true)}}
+              <td><a class="pericia-click" data-pericia="sigilo"  data-atributo="picaresca"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.picaresca.sigilo.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="sigilo"  data-atributo="picaresca"><label>{{this.actor.system.picaresca.sigilo.etiqueta}}</label></a></td>
+            {{/if}}
+          </tr>
+        </table>
+        {{#if (eq settings.activarTooltips true)}}
+          <span class="tooltiptext">
+            <label>Click para lanzar<br>Shift+click para activar/desactivar</label>
+          </span>
+        {{/if}}
+      </div>
+
+      <div  class="habilidad">
+        <table>
+          <tr>
+            <td style="width: 80%; text-align: left;"><h2><a class="pericia-click" data-pericia=""  data-atributo="galanteria"><label>{{this.actor.system.galanteria.etiqueta}}</label></a></h2></td>
+            <td><h1><input name="system.galanteria.valor" type="number" maxlength="2" size="2" value="{{actor.system.galanteria.valor}}" data-dtype="Number"/></h1></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="pericia tooltip">
+        <table>
+          <tr>
+            {{#if (eq actor.system.galanteria.bajos.valor true)}}
+              <td><a class="pericia-click" data-pericia="bajos"  data-atributo="galanteria"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.galanteria.bajos.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="bajos"  data-atributo="galanteria"><label>{{this.actor.system.galanteria.bajos.etiqueta}}</label></a></td>
+            {{/if}}
+            {{#if (eq actor.system.galanteria.arte.valor true)}}
+              <td><a class="pericia-click" data-pericia="arte"  data-atributo="galanteria"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.galanteria.arte.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="arte"  data-atributo="galanteria"><label>{{this.actor.system.galanteria.arte.etiqueta}}</label></a></td>
+            {{/if}}
+          </tr>
+          <tr>
+            {{#if (eq actor.system.galanteria.comercio.valor true)}}
+              <td><a class="pericia-click" data-pericia="comercio"  data-atributo="galanteria"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.galanteria.comercio.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="comercio"  data-atributo="galanteria"><label>{{this.actor.system.galanteria.comercio.etiqueta}}</label></a></td>
+            {{/if}}
+            {{#if (eq actor.system.galanteria.diplomacia.valor true)}}
+              <td><a class="pericia-click" data-pericia="diplomacia"  data-atributo="galanteria"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.galanteria.diplomacia.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="diplomacia"  data-atributo="galanteria"><label>{{this.actor.system.galanteria.diplomacia.etiqueta}}</label></a></td>
+            {{/if}}
+          </tr>
+          <tr>
+            {{#if (eq actor.system.galanteria.seduccion.valor true)}}
+              <td><a class="pericia-click" data-pericia="seduccion"  data-atributo="galanteria"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.galanteria.seduccion.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="seduccion"  data-atributo="galanteria"><label>{{this.actor.system.galanteria.seduccion.etiqueta}}</label></a></td>
+            {{/if}}
+            {{#if (eq actor.system.galanteria.animales.valor true)}}
+              <td><a class="pericia-click" data-pericia="animales"  data-atributo="galanteria"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.galanteria.animales.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="animales"  data-atributo="galanteria"><label>{{this.actor.system.galanteria.animales.etiqueta}}</label></a></td>
+            {{/if}}
+          </tr>
+        </table>
+        {{#if (eq settings.activarTooltips true)}}
+          <span class="tooltiptext">
+            <label>Click para lanzar<br>Shift+click para activar/desactivar</label>
+          </span>
+        {{/if}}
+      </div>
+
+      <div  class="habilidad">
+        <table>
+          <tr>
+            <td style="width: 80%; text-align: left;"><h2><a class="pericia-click" data-pericia=""  data-atributo="erudicion"><label>{{this.actor.system.erudicion.etiqueta}}</label></a></h2></td>
+            <td><h1><input name="system.erudicion.valor" type="number" maxlength="2" size="2" value="{{actor.system.erudicion.valor}}" data-dtype="Number"/></h1></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="pericia tooltip">
+        <table>
+          <tr>
+            {{#if (eq actor.system.erudicion.humanidades.valor true)}}
+              <td><a class="pericia-click" data-pericia="humanidades"  data-atributo="erudicion"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.erudicion.humanidades.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="humanidades"  data-atributo="erudicion"><label>{{this.actor.system.erudicion.humanidades.etiqueta}}</label></a></td>
+            {{/if}}
+            {{#if (eq actor.system.erudicion.ciencias.valor true)}}
+              <td><a class="pericia-click" data-pericia="ciencias"  data-atributo="erudicion"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.erudicion.ciencias.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="ciencias"  data-atributo="erudicion"><label>{{this.actor.system.erudicion.ciencias.etiqueta}}</label></a></td>
+            {{/if}}
+          </tr>
+          <tr>
+            {{#if (eq actor.system.erudicion.ingenieria.valor true)}}
+              <td><a class="pericia-click" data-pericia="ingenieria"  data-atributo="erudicion"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.erudicion.ingenieria.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="ingenieria"  data-atributo="erudicion"><label>{{this.actor.system.erudicion.ingenieria.etiqueta}}</label></a></td>
+            {{/if}}
+            {{#if (eq actor.system.erudicion.linguistica.valor true)}}
+              <td><a class="pericia-click" data-pericia="linguistica"  data-atributo="erudicion"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.erudicion.linguistica.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="linguistica"  data-atributo="erudicion"><label>{{this.actor.system.erudicion.linguistica.etiqueta}}</label></a></td>
+            {{/if}}
+          </tr>
+          <tr>
+            {{#if (eq actor.system.erudicion.medicina.valor true)}}
+              <td><a class="pericia-click" data-pericia="medicina"  data-atributo="erudicion"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.erudicion.medicina.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="medicina"  data-atributo="erudicion"><label>{{this.actor.system.erudicion.medicina.etiqueta}}</label></a></td>
+            {{/if}}
+            {{#if (eq actor.system.erudicion.navegacion.valor true)}}
+              <td><a class="pericia-click" data-pericia="navegacion"  data-atributo="erudicion"><label style="font-weight:bold; background-color: black; color: white;">{{this.actor.system.erudicion.navegacion.etiqueta}}</label></a></td>
+            {{else}}
+              <td><a class="pericia-click" data-pericia="navegacion"  data-atributo="erudicion"><label>{{this.actor.system.erudicion.navegacion.etiqueta}}</label></a></td>
+            {{/if}}
+          </tr>
+        </table>
+        {{#if (eq settings.activarTooltips true)}}
+          <span class="tooltiptext">
+            <label>Click para lanzar<br>Shift+click para activar/desactivar</label>
+          </span>
+        {{/if}}
+      </div>
+    </section>
+    <section class="middle-section">
+      <div class="char-pic"><img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{name}}" alt='Imagen del Personaje'/></div>
+      <nav class="sheet-tabs tabs" data-group="primary">
+        <h2><a class="item" data-tab="general">General</a></h2>
+        <h2><a class="item" data-tab="notas">Notas</a></h2>
+      </nav>
+      <div class="recursos">
+        <table>
+          <tr>
+            <td style="width: 50%;"><h2><label>PV: </label></h2></td>
+            <td><h1><input name="system.pv.value" type="number" maxlength="2" size="2" value="{{actor.system.pv.value}}" data-dtype="Number"/></h1></td>
+            <td><h1><label>&nbsp;/&nbsp;</label></h1></td>
+            <td style="text-align: center;"><h1><input name="system.pv.max" type="number" maxlength="2" size="2" value="{{actor.system.pv.max}}" data-dtype="Number"/></h1></td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td style="width: 70%;"><h2><label>Defensa: </label></h2></td>
+            <td style="text-align: center;"><h1><input name="system.defensa.value" type="number" maxlength="2" size="2" value="{{actor.system.defensa.value}}" data-dtype="Number"/></h1></td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td style="width: 70%;"><h2><label>Armadura: </label></h2></td>
+            <td style="text-align: center;"><h1><input name="system.armadura.value" type="number" maxlength="2" size="2" value="{{actor.system.armadura.value}}" data-dtype="Number"/></h1></td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td style="width: 70%;"><a class="iniciativa-click"><h2><label>Iniciativa: </label></h2></a></td>
+            <td style="text-align: center;"><h1><input name="system.iniciativa.value" type="number" maxlength="2" size="2" value="{{actor.system.iniciativa.value}}" data-dtype="Number"/></h1></td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td style="width: 70%;"><h2><label>Fortuna: </label></h2></td>
+            <td><h1><input name="system.fortuna.value" type="number" maxlength="2" size="2" value="{{actor.system.fortuna.value}}" data-dtype="Number"/></h1></td>
+            <td><h1><label>&nbsp;/&nbsp;</label></h1></td>
+            <td style="text-align: center;"><h1><input name="system.fortuna.max" type="number" maxlength="2" size="2" value="{{actor.system.fortuna.max}}" data-dtype="Number"/></h1></td>
+          </tr>
+        </table>
+      </div>
+    </section>
+    <section class="right-section">
+      {{!-- General Tab --}}
+      <div class="tab general" data-group="primary" data-tab="general">
+        <div  class="habilidad">
+          <table>
+            <tr>
+              <td style="width: 80%; text-align: left;"><h2><label>Talentos</label></h2></td>
+              <td style="text-align: right;"><a class="item-create" data-type="talento"><h1><label>+</label></h1></a></td>
+            </tr>
+          </table>
+        </div>
+        <div class="items">
+          <table>
+            {{#each Talentos as |item id|}}
+              <tr>
+                <td><h2><label>{{item.name}}</label></h2></td>
+                <td style="width: 35px; text-align: right;">
+                  <a class="item-edit" data-id="{{item._id}}"><i class="fas fa-edit"></i></a>
+                  <a class="item-delete" data-id="{{item._id}}"><i class="fas fa-trash"></i></a>
+                </td>
+              </tr>
+            {{/each}}
+          </table>
+        </div>
+
+        <div  class="habilidad">
+          <table>
+            <tr>
+              <td style="width: 80%; text-align: left;"><h2><label>Ataques</label></h2></td>
+              <td style="text-align: right;"><a class="item-create" data-type="arma"><h1><label>+</label></h1></a></td>
+            </tr>
+          </table>
+        </div>
+        <div class="items">
+          <table>
+            {{#each Armas as |item id|}}
+              <tr>
+                <td><h2><a class="weapon-click" data-id="{{item._id}}"><label>{{item.name}}</label></a></h2></td>
+                {{#if (eq item.system.pericia "cac")}}
+                  <td><h2><label>(Cuerpo a c.)</label></h2></td>
+                {{/if}}
+                {{#if (eq item.system.pericia "sinarmas")}}
+                  <td><h2><label>(Sin armas)</label></h2></td>
+                {{/if}}
+                {{#if (eq item.system.pericia "atletismo")}}
+                  <td><h2><label>(Atletismo)</label></h2></td>
+                {{/if}}
+                {{#if (eq item.system.pericia "distancia")}}
+                  <td><h2><label>(A distancia)</label></h2></td>
+                {{/if}}
+                <td><h2><label>{{item.system.dano}}</label></h2></td>
+                <td style="width: 35px; text-align: right;">
+                  <a class="item-edit" data-id="{{item._id}}"><i class="fas fa-edit"></i></a>
+                  <a class="item-delete" data-id="{{item._id}}"><i class="fas fa-trash"></i></a>
+                </td>
+              </tr>
+            {{/each}}
+          </table>
+        </div>
+        
+      </div>
+      <div class="tab notas" data-group="primary" data-tab="notas">
+          {{editor actor.system.notas target="system.notas" button=true owner=owner editable=true}}
+      </div>
+    </section>
+  </div>
+</form>

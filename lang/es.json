@@ -1,6 +1,9 @@
 {
     "TYPES.Actor.Jugador": "Encubierto",
-    "TYPES.Actor.PNJ": "Enemigo",
+    "TYPES.Actor.Esbirro": "Esbirro",
+    "TYPES.Actor.Animal": "Animal",
+    "TYPES.Actor.Lugarteniente": "Lugarteniente",
+    "TYPES.Actor.Villano": "Villano",
     "TYPES.Item.talento": "Talento",
     "TYPES.Item.objeto": "Objeto",
     "TYPES.Item.arma": "Arma",

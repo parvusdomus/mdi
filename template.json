@@ -3,7 +3,11 @@
         "types":
         [
             "Jugador",
-            "PNJ"
+            "Esbirro",
+            "Lugarteniente",
+            "Animal",
+            "Villano",
+            "Sobrenatural"
         ],
         "Jugador": {
             "concepto": "",
@@ -152,7 +156,7 @@
             },
             "notas": ""
         },
-        "PNJ": {
+        "Villano": {
             "concepto": "",
             "brio": {
                 "valor": 0,
@@ -296,6 +300,543 @@
                 "value": 0,
                 "min": 0,
                 "max": 0
+            },
+            "notas": ""
+        },
+        "Sobrenatural": {
+            "concepto": "",
+            "brio": {
+                "valor": 0,
+                "etiqueta": "Brío",
+                "atletismo": {
+                    "valor": false,
+                    "etiqueta": "Atletismo"
+                },
+                "equitacion": {
+                    "valor": false,
+                    "etiqueta": "Equitación"
+                },
+                "intimidar": {
+                    "valor": false,
+                    "etiqueta": "Intimidar"
+                },
+                "cac": {
+                    "valor": false,
+                    "etiqueta": "Combate cuerpo a cuerpo"
+                },
+                "sinarmas": {
+                    "valor": false,
+                    "etiqueta": "Combate sin armas"
+                },
+                "supervivencia": {
+                    "valor": false,
+                    "etiqueta": "Supervivencia"
+                }
+            },
+            "picaresca": {
+                "valor": 0,
+                "etiqueta": "Picaresca",
+                "acrobacias": {
+                    "valor": false,
+                    "etiqueta": "Acrobacias"
+                },
+                "enganar": {
+                    "valor": false,
+                    "etiqueta": "Engañar"
+                },
+                "perspicacia": {
+                    "valor": false,
+                    "etiqueta": "Perspicacia"
+                },
+                "distancia": {
+                    "valor": false,
+                    "etiqueta": "Combate a distancia"
+                },
+                "latrocinio": {
+                    "valor": false,
+                    "etiqueta": "Latrocinio"
+                },
+                "sigilo": {
+                    "valor": false,
+                    "etiqueta": "Sigilo"
+                }
+            },
+            "galanteria": {
+                "valor": 0,
+                "etiqueta": "Galantería",
+                "bajos": {
+                    "valor": false,
+                    "etiqueta": "Bajos Fondos"
+                },
+                "comercio": {
+                    "valor": false,
+                    "etiqueta": "Comercio"
+                },
+                "seduccion": {
+                    "valor": false,
+                    "etiqueta": "Seducción"
+                },
+                "arte": {
+                    "valor": false,
+                    "etiqueta": "Arte"
+                },
+                "diplomacia": {
+                    "valor": false,
+                    "etiqueta": "Diplomacia"
+                },
+                "animales": {
+                    "valor": false,
+                    "etiqueta": "Trato con animales"
+                }
+            },
+            "erudicion": {
+                "valor": 0,
+                "etiqueta": "Erudición",
+                "humanidades": {
+                    "valor": false,
+                    "etiqueta": "Humanidades"
+                },
+                "ingenieria": {
+                    "valor": false,
+                    "etiqueta": "Ingeniería"
+                },
+                "medicina": {
+                    "valor": false,
+                    "etiqueta": "Medicina"
+                },
+                "ciencias": {
+                    "valor": false,
+                    "etiqueta": "Ciencias"
+                },
+                "linguistica": {
+                    "valor": false,
+                    "etiqueta": "Lingüistica"
+                },
+                "navegacion": {
+                    "valor": false,
+                    "etiqueta": "Navegación"
+                }
+            },
+            "pv": {
+                "value": 0,
+                "min": 0,
+                "max": 0
+            },
+            "defensa": {
+                "equipo": 0,
+                "value": 0
+            },
+            "armadura": {
+                "equipo": 0,
+                "value": 0
+            },
+            "penalizador": {
+                "equipo": 0,
+                "value": 0
+            },
+            "iniciativa": {
+                "penalizador": 0,
+                "value": 0
+            },
+            "voluntad": {
+                "penalizador": 0,
+                "value": 0,
+                "estado": "normal"
+            },
+            "fortuna": {
+                "value": 0,
+                "min": 0,
+                "max": 0
+            },
+            "notas": ""
+        },
+        "Esbirro": {
+            "concepto": "",
+            "brio": {
+                "valor": 2,
+                "etiqueta": "Brío",
+                "atletismo": {
+                    "valor": false,
+                    "etiqueta": "Atletismo"
+                },
+                "equitacion": {
+                    "valor": false,
+                    "etiqueta": "Equitación"
+                },
+                "intimidar": {
+                    "valor": false,
+                    "etiqueta": "Intimidar"
+                },
+                "cac": {
+                    "valor": false,
+                    "etiqueta": "Combate CaC"
+                },
+                "sinarmas": {
+                    "valor": false,
+                    "etiqueta": "C. sin armas"
+                },
+                "supervivencia": {
+                    "valor": false,
+                    "etiqueta": "Supervivencia"
+                }
+            },
+            "picaresca": {
+                "valor": 1,
+                "etiqueta": "Picaresca",
+                "acrobacias": {
+                    "valor": false,
+                    "etiqueta": "Acrobacias"
+                },
+                "enganar": {
+                    "valor": false,
+                    "etiqueta": "Engañar"
+                },
+                "perspicacia": {
+                    "valor": false,
+                    "etiqueta": "Perspicacia"
+                },
+                "distancia": {
+                    "valor": false,
+                    "etiqueta": "C. a distancia"
+                },
+                "latrocinio": {
+                    "valor": false,
+                    "etiqueta": "Latrocinio"
+                },
+                "sigilo": {
+                    "valor": false,
+                    "etiqueta": "Sigilo"
+                }
+            },
+            "galanteria": {
+                "valor": 0,
+                "etiqueta": "Galantería",
+                "bajos": {
+                    "valor": false,
+                    "etiqueta": "Bajos Fondos"
+                },
+                "comercio": {
+                    "valor": false,
+                    "etiqueta": "Comercio"
+                },
+                "seduccion": {
+                    "valor": false,
+                    "etiqueta": "Seducción"
+                },
+                "arte": {
+                    "valor": false,
+                    "etiqueta": "Arte"
+                },
+                "diplomacia": {
+                    "valor": false,
+                    "etiqueta": "Diplomacia"
+                },
+                "animales": {
+                    "valor": false,
+                    "etiqueta": "Trato con animales"
+                }
+            },
+            "erudicion": {
+                "valor": 1,
+                "etiqueta": "Erudición",
+                "humanidades": {
+                    "valor": false,
+                    "etiqueta": "Humanidades"
+                },
+                "ingenieria": {
+                    "valor": false,
+                    "etiqueta": "Ingeniería"
+                },
+                "medicina": {
+                    "valor": false,
+                    "etiqueta": "Medicina"
+                },
+                "ciencias": {
+                    "valor": false,
+                    "etiqueta": "Ciencias"
+                },
+                "linguistica": {
+                    "valor": false,
+                    "etiqueta": "Lingüistica"
+                },
+                "navegacion": {
+                    "valor": false,
+                    "etiqueta": "Navegación"
+                }
+            },
+            "pv": {
+                "value": 1,
+                "min": 0,
+                "max": 1
+            },
+            "defensa": {
+                "value": 5
+            },
+            "armadura": {
+                "value": 0
+            },
+            "iniciativa": {
+                "value": 1
+            },
+            "notas": ""
+        },
+        "Lugarteniente": {
+            "concepto": "",
+            "brio": {
+                "valor": 3,
+                "etiqueta": "Brío",
+                "atletismo": {
+                    "valor": false,
+                    "etiqueta": "Atletismo"
+                },
+                "equitacion": {
+                    "valor": false,
+                    "etiqueta": "Equitación"
+                },
+                "intimidar": {
+                    "valor": false,
+                    "etiqueta": "Intimidar"
+                },
+                "cac": {
+                    "valor": false,
+                    "etiqueta": "Combate CaC"
+                },
+                "sinarmas": {
+                    "valor": false,
+                    "etiqueta": "C. sin armas"
+                },
+                "supervivencia": {
+                    "valor": false,
+                    "etiqueta": "Supervivencia"
+                }
+            },
+            "picaresca": {
+                "valor": 1,
+                "etiqueta": "Picaresca",
+                "acrobacias": {
+                    "valor": false,
+                    "etiqueta": "Acrobacias"
+                },
+                "enganar": {
+                    "valor": false,
+                    "etiqueta": "Engañar"
+                },
+                "perspicacia": {
+                    "valor": false,
+                    "etiqueta": "Perspicacia"
+                },
+                "distancia": {
+                    "valor": false,
+                    "etiqueta": "C. a distancia"
+                },
+                "latrocinio": {
+                    "valor": false,
+                    "etiqueta": "Latrocinio"
+                },
+                "sigilo": {
+                    "valor": false,
+                    "etiqueta": "Sigilo"
+                }
+            },
+            "galanteria": {
+                "valor": 0,
+                "etiqueta": "Galantería",
+                "bajos": {
+                    "valor": false,
+                    "etiqueta": "Bajos Fondos"
+                },
+                "comercio": {
+                    "valor": false,
+                    "etiqueta": "Comercio"
+                },
+                "seduccion": {
+                    "valor": false,
+                    "etiqueta": "Seducción"
+                },
+                "arte": {
+                    "valor": false,
+                    "etiqueta": "Arte"
+                },
+                "diplomacia": {
+                    "valor": false,
+                    "etiqueta": "Diplomacia"
+                },
+                "animales": {
+                    "valor": false,
+                    "etiqueta": "Trato con animales"
+                }
+            },
+            "erudicion": {
+                "valor": 2,
+                "etiqueta": "Erudición",
+                "humanidades": {
+                    "valor": false,
+                    "etiqueta": "Humanidades"
+                },
+                "ingenieria": {
+                    "valor": false,
+                    "etiqueta": "Ingeniería"
+                },
+                "medicina": {
+                    "valor": false,
+                    "etiqueta": "Medicina"
+                },
+                "ciencias": {
+                    "valor": false,
+                    "etiqueta": "Ciencias"
+                },
+                "linguistica": {
+                    "valor": false,
+                    "etiqueta": "Lingüistica"
+                },
+                "navegacion": {
+                    "valor": false,
+                    "etiqueta": "Navegación"
+                }
+            },
+            "pv": {
+                "value": 8,
+                "min": 0,
+                "max": 8
+            },
+            "defensa": {
+                "value": 6
+            },
+            "armadura": {
+                "value": 0
+            },
+            "iniciativa": {
+                "value": 1
+            },
+            "notas": ""
+        },
+        "Animal": {
+            "concepto": "",
+            "brio": {
+                "valor": 0,
+                "etiqueta": "Brío",
+                "atletismo": {
+                    "valor": false,
+                    "etiqueta": "Atletismo"
+                },
+                "equitacion": {
+                    "valor": false,
+                    "etiqueta": "Equitación"
+                },
+                "intimidar": {
+                    "valor": false,
+                    "etiqueta": "Intimidar"
+                },
+                "cac": {
+                    "valor": false,
+                    "etiqueta": "Combate CaC"
+                },
+                "sinarmas": {
+                    "valor": false,
+                    "etiqueta": "C.sin armas"
+                },
+                "supervivencia": {
+                    "valor": false,
+                    "etiqueta": "Supervivencia"
+                }
+            },
+            "picaresca": {
+                "valor": 0,
+                "etiqueta": "Picaresca",
+                "acrobacias": {
+                    "valor": false,
+                    "etiqueta": "Acrobacias"
+                },
+                "enganar": {
+                    "valor": false,
+                    "etiqueta": "Engañar"
+                },
+                "perspicacia": {
+                    "valor": false,
+                    "etiqueta": "Perspicacia"
+                },
+                "distancia": {
+                    "valor": false,
+                    "etiqueta": "C. a distancia"
+                },
+                "latrocinio": {
+                    "valor": false,
+                    "etiqueta": "Latrocinio"
+                },
+                "sigilo": {
+                    "valor": false,
+                    "etiqueta": "Sigilo"
+                }
+            },
+            "galanteria": {
+                "valor": 0,
+                "etiqueta": "Galantería",
+                "bajos": {
+                    "valor": false,
+                    "etiqueta": "Bajos Fondos"
+                },
+                "comercio": {
+                    "valor": false,
+                    "etiqueta": "Comercio"
+                },
+                "seduccion": {
+                    "valor": false,
+                    "etiqueta": "Seducción"
+                },
+                "arte": {
+                    "valor": false,
+                    "etiqueta": "Arte"
+                },
+                "diplomacia": {
+                    "valor": false,
+                    "etiqueta": "Diplomacia"
+                },
+                "animales": {
+                    "valor": false,
+                    "etiqueta": "Trato con animales"
+                }
+            },
+            "erudicion": {
+                "valor": 0,
+                "etiqueta": "Erudición",
+                "humanidades": {
+                    "valor": false,
+                    "etiqueta": "Humanidades"
+                },
+                "ingenieria": {
+                    "valor": false,
+                    "etiqueta": "Ingeniería"
+                },
+                "medicina": {
+                    "valor": false,
+                    "etiqueta": "Medicina"
+                },
+                "ciencias": {
+                    "valor": false,
+                    "etiqueta": "Ciencias"
+                },
+                "linguistica": {
+                    "valor": false,
+                    "etiqueta": "Lingüistica"
+                },
+                "navegacion": {
+                    "valor": false,
+                    "etiqueta": "Navegación"
+                }
+            },
+            "pv": {
+                "value": 0,
+                "min": 0,
+                "max": 0
+            },
+            "defensa": {
+                "value": 0
+            },
+            "armadura": {
+                "value": 0
+            },
+            "iniciativa": {
+                "value": 0
             },
             "notas": ""
         }

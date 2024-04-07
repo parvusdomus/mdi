@@ -1,41 +1,36 @@
 import {DiceRoll} from "./rolls.js";
 import {WeaponRoll} from "./combat.js";
 import {InitiativeRoll} from "./combat.js";
-export default class MDI_CHAR_SHEET extends ActorSheet{
+export default class MDI_ESBIRRO_SHEET extends ActorSheet{
     static get defaultOptions() {
       return mergeObject(super.defaultOptions, {
           classes: ["mdi", "sheet", "actor"],
-          template: "systems/mdi/templates/actors/character.html",
+          template: "systems/mdi/templates/actors/esbirro.html",
           width: 780,
-          height: 680,
-          tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".right-section", initial: "general" }],
-          scrollY: ['section.right-section']
+          height: 400,
+          tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".right-section-esbirro", initial: "general" }],
+          scrollY: ['section.right-section-esbirro']
         });
   
     }
     getData() {
       const data = super.getData();
-      this._prepareCharacterItems(data);
-      this._calculaValores(data);
+      //if (this.actor.type == 'Jugador') {
+        this._prepareCharacterItems(data);
+      //  this._calculaValores(data);
+      //}
       return data;
     }
 
     _prepareCharacterItems(sheetData){
       const actorData = sheetData;
-      const Talentos = [];
       const Armas = [];
-      const Armaduras = [];
-      const Escudos = [];
-      const Objetos = [];
-      let armadura=0;
-      let defensa=0;
-      let penalizador=0;
-      let penalizadorinit=0;
       for (let i of sheetData.items){
         switch (i.type){
           case 'talento':
 				  {
-					  Talentos.push(i);
+					  ui.notifications.warn(game.i18n.localize("Este tipo de personaje no puede tener talentos"));
+            this.actor.deleteEmbeddedDocuments("Item", [i._id])
 					  break;
 				  }
           case 'arma':
@@ -45,73 +40,29 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
 				  }
           case 'objeto':
 				  {
-					  Objetos.push(i);
+            ui.notifications.warn(game.i18n.localize("Este tipo de personaje no puede tener objetos (inclúyelo en notas)"));
+            this.actor.deleteEmbeddedDocuments("Item", [i._id])
 					  break;
 				  }
           case 'armadura':
 				  {
-					  Armaduras.push(i);
-            if (i.system.equipada==true){
-              armadura+=Math.abs(i.system.puntuacion)
-              penalizador+=Math.abs(i.system.penalizacion)
-            }
+					  ui.notifications.warn(game.i18n.localize("Este tipo de personaje no puede tener ojetos de armadura (apunta directamente el valor de armadura)"));
+            this.actor.deleteEmbeddedDocuments("Item", [i._id])
 					  break;
 				  }
           case 'escudo':
 				  {
-					  Escudos.push(i);
-            if (i.system.equipada==true){
-              defensa+=Math.abs(i.system.puntuacion)
-              penalizadorinit+=Math.abs(i.system.penalizacion)
-            }
+					  ui.notifications.warn(game.i18n.localize("Este tipo de personaje no puede tener ojetos de escudo (apunta directamente el valor de defensa)"));
+            this.actor.deleteEmbeddedDocuments("Item", [i._id])
 					  break;
 				  }
         }
       }
-      actorData.Talentos = Talentos;
       actorData.Armas = Armas;
-      actorData.Armaduras = Armaduras;
-      actorData.Escudos = Escudos;
-      actorData.Objetos = Objetos;
+      actorData.isGM = game.user.isGM;
       actorData.settings = {
-        activarMiedo: game.settings.get("mdi", "activarMiedo"),
         activarTooltips: game.settings.get("mdi", "activarTooltips")
       }
-      actorData.isGM = game.user.isGM;
-      this.actor.update ({ 'system.armadura.equipo': armadura });
-      this.actor.update ({ 'system.defensa.equipo': defensa });
-      this.actor.update ({ 'system.penalizador.equipo': penalizador });
-      this.actor.update ({ 'system.iniciativa.penalizador': penalizadorinit });
-
-    }
-
-    _calculaValores(actorData) {
-      const data = actorData;
-      let maxPV = 6+Number(this.actor.system.brio.valor)
-      let defensa = Math.floor((Number(this.actor.system.picaresca.valor)+Number(this.actor.system.brio.valor))/2)+4+Number(this.actor.system.defensa.equipo)
-      let iniciativa = Math.floor((Number(this.actor.system.picaresca.valor)+Number(this.actor.system.erudicion.valor))/2)
-      let fortuna = Math.floor((Number(this.actor.system.galanteria.valor)+Number(this.actor.system.erudicion.valor))/2)
-      let armadura = Number(this.actor.system.armadura.equipo)
-      let penalizador = Number(this.actor.system.penalizador.equipo)
-      let valormayor = 0
-      let valormenor = 99
-      const atributos = ["brio", "picaresca", "galanteria", "erudicion"]
-      for (let atributo in atributos) {
-        if (this.actor.system[atributos[atributo]].valor > valormayor){
-          valormayor = this.actor.system[atributos[atributo]].valor
-        }
-        if (this.actor.system[atributos[atributo]].valor < valormenor){
-          valormenor = this.actor.system[atributos[atributo]].valor
-        }
-      }
-      let voluntad = Math.floor((valormayor+valormenor)/2)
-      this.actor.update ({ 'system.pv.max': maxPV });
-      this.actor.update ({ 'system.defensa.value': defensa });
-      this.actor.update ({ 'system.armadura.value': armadura });
-      this.actor.update ({ 'system.penalizador.value': penalizador });
-      this.actor.update ({ 'system.iniciativa.value': iniciativa });
-      this.actor.update ({ 'system.fortuna.max': fortuna });
-      this.actor.update ({ 'system.voluntad.value': voluntad });  
     }
 
     activateListeners(html)
@@ -125,7 +76,6 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       html.find('a.weapon-click').click(this._onWeaponRoll.bind(this));
       html.find('a.estado-click').click(this._onEstadoToggle.bind(this));
       html.find('a.iniciativa-click').click(this._onIniciativaRoll.bind(this));
-      html.find('a.voluntad-click').click(this._onVoluntadRoll.bind(this));
     }
 
     _onItemCreate(event) {
@@ -261,7 +211,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       let valoratributo=actor.system[dataset.atributo].valor
       let nombrepericia=""
       let periciaentrenada=false
-      let penalizador=0-Number(this.actor.system.penalizador.value)
+      let penalizador=0
       if (dataset.pericia!=""){
         nombrepericia=" ("+actor.system[dataset.atributo][dataset.pericia].etiqueta+")";
         periciaentrenada=actor.system[dataset.atributo][dataset.pericia].valor
@@ -311,62 +261,6 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
             let dificultad=document.getElementById("dificultad").value;
             let modificador=document.getElementById("modificador").value;
             DiceRoll(actor_id,titulo,'ventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, dataset.pericia, penalizador, modificador, dificultad)
-          }
-         }
-        },
-        default: "normal",
-        render: html => console.log("Register interactivity in the rendered dialog"),
-        close: html => console.log("This always is logged no matter which option is chosen")
-       });
-       d.render(true);
-
-    }
-
-    async _onVoluntadRoll(event, data){
-      const dataset = data;
-      let actor=this.actor
-      let nombreatributo="Voluntad"
-      let valoratributo=actor.system.voluntad.value
-      let penalizador=0
-      let nombrepericia=""
-      let periciaentrenada=false
-      let titulo=nombreatributo
-      let html_content='<div class="dialogo">'
-      html_content+='<table><tr><td><h2><label>'+titulo+'</label></h2></td></tr></table>'
-      html_content+='<table><tr><td><h1><label>'+valoratributo+'</label></h1></td>'
-      html_content+='<td><h1><label>+</label></h1></td><td><h1><input name="modificador" id="modificador" data-dtype="Number" value="0" size=2></input></h1></td>'
-      html_content+='<td><h2><label>VS</label></h2></td><td><h1><input name="dificultad" id="dificultad" data-dtype="Number" value="5" size=2></input><h1></td>'
-      html_content+='</tr></table></div>'
-      let actor_id = this.actor._id;
-      let d = new Dialog({
-        title: titulo,
-        content: html_content,
-        buttons: {
-         desventaja: {
-          icon: '<i class="fa-solid fa-dice" style="color: darkred;"></i>',
-          label: "Desventaja",
-          callback: () => {
-            let dificultad=document.getElementById("dificultad").value;
-            let modificador=document.getElementById("modificador").value;
-            DiceRoll(actor_id,titulo,'desventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, nombrepericia, penalizador, modificador, dificultad)
-          }
-         },
-         normal: {
-          icon: '<i class="fa-solid fa-dice-six"></i>',
-          label: "Normal",
-          callback: () => {
-            let dificultad=document.getElementById("dificultad").value;
-            let modificador=document.getElementById("modificador").value;
-            DiceRoll(actor_id,titulo,'normal',nombreatributo, nombrepericia, valoratributo, periciaentrenada, nombrepericia, penalizador, modificador, dificultad)
-          }
-         },
-         ventaja: {
-          icon: '<i class="fa-solid fa-dice"></i>',
-          label: "Ventaja",
-          callback: () => {
-            let dificultad=document.getElementById("dificultad").value;
-            let modificador=document.getElementById("modificador").value;
-            DiceRoll(actor_id,titulo,'ventaja',nombreatributo, nombrepericia, valoratributo, periciaentrenada, nombrepericia, penalizador, modificador, dificultad)
           }
          }
         },

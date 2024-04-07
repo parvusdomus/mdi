@@ -1,11 +1,11 @@
 import {DiceRoll} from "./rolls.js";
 import {WeaponRoll} from "./combat.js";
 import {InitiativeRoll} from "./combat.js";
-export default class MDI_CHAR_SHEET extends ActorSheet{
+export default class MDI_VILLANO_SHEET extends ActorSheet{
     static get defaultOptions() {
       return mergeObject(super.defaultOptions, {
           classes: ["mdi", "sheet", "actor"],
-          template: "systems/mdi/templates/actors/character.html",
+          template: "systems/mdi/templates/actors/villano.html",
           width: 780,
           height: 680,
           tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".right-section", initial: "general" }],
@@ -16,7 +16,6 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
     getData() {
       const data = super.getData();
       this._prepareCharacterItems(data);
-      this._calculaValores(data);
       return data;
     }
 
@@ -24,13 +23,6 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       const actorData = sheetData;
       const Talentos = [];
       const Armas = [];
-      const Armaduras = [];
-      const Escudos = [];
-      const Objetos = [];
-      let armadura=0;
-      let defensa=0;
-      let penalizador=0;
-      let penalizadorinit=0;
       for (let i of sheetData.items){
         switch (i.type){
           case 'talento':
@@ -45,73 +37,30 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
 				  }
           case 'objeto':
 				  {
-					  Objetos.push(i);
+					  ui.notifications.warn(game.i18n.localize("Este tipo de personaje no puede tener objetos (inclúyelo en notas)"));
+            this.actor.deleteEmbeddedDocuments("Item", [i._id])
 					  break;
 				  }
           case 'armadura':
 				  {
-					  Armaduras.push(i);
-            if (i.system.equipada==true){
-              armadura+=Math.abs(i.system.puntuacion)
-              penalizador+=Math.abs(i.system.penalizacion)
-            }
+					  ui.notifications.warn(game.i18n.localize("Este tipo de personaje no puede tener ojetos de armadura (apunta directamente el valor de armadura)"));
+            this.actor.deleteEmbeddedDocuments("Item", [i._id])
 					  break;
 				  }
           case 'escudo':
 				  {
-					  Escudos.push(i);
-            if (i.system.equipada==true){
-              defensa+=Math.abs(i.system.puntuacion)
-              penalizadorinit+=Math.abs(i.system.penalizacion)
-            }
+					  ui.notifications.warn(game.i18n.localize("Este tipo de personaje no puede tener ojetos de escudo (apunta directamente el valor de defensa)"));
+            this.actor.deleteEmbeddedDocuments("Item", [i._id])
 					  break;
 				  }
         }
       }
       actorData.Talentos = Talentos;
       actorData.Armas = Armas;
-      actorData.Armaduras = Armaduras;
-      actorData.Escudos = Escudos;
-      actorData.Objetos = Objetos;
       actorData.settings = {
-        activarMiedo: game.settings.get("mdi", "activarMiedo"),
         activarTooltips: game.settings.get("mdi", "activarTooltips")
       }
       actorData.isGM = game.user.isGM;
-      this.actor.update ({ 'system.armadura.equipo': armadura });
-      this.actor.update ({ 'system.defensa.equipo': defensa });
-      this.actor.update ({ 'system.penalizador.equipo': penalizador });
-      this.actor.update ({ 'system.iniciativa.penalizador': penalizadorinit });
-
-    }
-
-    _calculaValores(actorData) {
-      const data = actorData;
-      let maxPV = 6+Number(this.actor.system.brio.valor)
-      let defensa = Math.floor((Number(this.actor.system.picaresca.valor)+Number(this.actor.system.brio.valor))/2)+4+Number(this.actor.system.defensa.equipo)
-      let iniciativa = Math.floor((Number(this.actor.system.picaresca.valor)+Number(this.actor.system.erudicion.valor))/2)
-      let fortuna = Math.floor((Number(this.actor.system.galanteria.valor)+Number(this.actor.system.erudicion.valor))/2)
-      let armadura = Number(this.actor.system.armadura.equipo)
-      let penalizador = Number(this.actor.system.penalizador.equipo)
-      let valormayor = 0
-      let valormenor = 99
-      const atributos = ["brio", "picaresca", "galanteria", "erudicion"]
-      for (let atributo in atributos) {
-        if (this.actor.system[atributos[atributo]].valor > valormayor){
-          valormayor = this.actor.system[atributos[atributo]].valor
-        }
-        if (this.actor.system[atributos[atributo]].valor < valormenor){
-          valormenor = this.actor.system[atributos[atributo]].valor
-        }
-      }
-      let voluntad = Math.floor((valormayor+valormenor)/2)
-      this.actor.update ({ 'system.pv.max': maxPV });
-      this.actor.update ({ 'system.defensa.value': defensa });
-      this.actor.update ({ 'system.armadura.value': armadura });
-      this.actor.update ({ 'system.penalizador.value': penalizador });
-      this.actor.update ({ 'system.iniciativa.value': iniciativa });
-      this.actor.update ({ 'system.fortuna.max': fortuna });
-      this.actor.update ({ 'system.voluntad.value': voluntad });  
     }
 
     activateListeners(html)
