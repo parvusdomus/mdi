@@ -1,10 +1,9 @@
 export async function InitiativeRoll(actor_id)
 {
+    console.log ("INITIATIVE ROLL")
     let actor=game.actors.get(actor_id)
     let explode=false
     let totalRoll = 0;
-    let totalRoll1 = 0;
-    let totalRoll2 = 0;
     let iniciativa = Number(actor.system.iniciativa.value);
     if (actor.type=="Jugador"||actor.type=="Villano"||actor.type=="Sobrenatural")
     {
@@ -18,18 +17,9 @@ export async function InitiativeRoll(actor_id)
     let totalFinal = 0;
     let nVueltas = 0;
     let Fracaso = false;
-    let Fracaso1 = false;
-    let Fracaso2 = false;
     let dicelist = "";
-    let dicelist1 = "";
-    let dicelist2 = "";
-    let baddicelist = "";
     let Critico = false;
     let rollResult = "";
-    let showbad = false;
-
-    let rollType = "normal";
-
     do
 	{
         explode=false;
@@ -41,14 +31,14 @@ export async function InitiativeRoll(actor_id)
         if (Number(evaluateRoll.total)===6){
             Critico = true
             explode = true
-            totalRoll1--
+            totalRoll--
         }
-		totalRoll1 += Number(evaluateRoll.total)
-        if (dicelist1==""){
-            dicelist1+=evaluateRoll.terms[0].results[0].result
+		totalRoll += Number(evaluateRoll.total)
+        if (dicelist==""){
+            dicelist+=evaluateRoll.terms[0].results[0].result
         }
         else {
-            dicelist1+=" ,"+evaluateRoll.terms[0].results[0].result
+            dicelist+=" ,"+evaluateRoll.terms[0].results[0].result
         }
         if (Number(evaluateRoll.total)===1 && nVueltas ===0){
             explode = false
@@ -57,125 +47,17 @@ export async function InitiativeRoll(actor_id)
             if (game.modules.get('dice-so-nice')?.active){
                 game.dice3d.showForRoll(rollfail,game.user,true,false,null)
             }
-            dicelist1+=" ,"+evaluateRollfail.terms[0].results[0].result
+            dicelist+=" ,"+evaluateRollfail.terms[0].results[0].result
             if (Number(evaluateRollfail.total)===1){
-                Fracaso1 = true;
+                Fracaso = true;
             }
         }   
         nVueltas++
 	}while(explode);
-
-    nVueltas = 0
-    switch (rollType){
-        case 'normal':
-        {
-          totalRoll = totalRoll1
-          dicelist = dicelist1
-          Fracaso = Fracaso1
-          break;
-        }
-        case 'ventaja':
-        {
-            showbad = true;
-            do
-            {
-                explode=false;
-                let roll = new Roll(rollText);
-                let evaluateRoll = roll.evaluate({async: false});
-                if (game.modules.get('dice-so-nice')?.active){
-                    game.dice3d.showForRoll(roll,game.user,true,false,null)
-                }
-                if (Number(evaluateRoll.total)===6){
-                    explode = true
-                    totalRoll2--
-                }
-                totalRoll2 += Number(evaluateRoll.total)
-                if (dicelist2==""){
-                    dicelist2+=evaluateRoll.terms[0].results[0].result
-                }
-                else {
-                    dicelist2+=" ,"+evaluateRoll.terms[0].results[0].result
-                }
-                if (Number(evaluateRoll.total)===1 && nVueltas ===0){
-                    explode = false
-                    let rollfail = new Roll(rollText);
-                    let evaluateRollfail = rollfail.evaluate({async: false});
-                    if (game.modules.get('dice-so-nice')?.active){
-                        game.dice3d.showForRoll(rollfail,game.user,true,false,null)
-                    }
-                    dicelist2+=" ,"+evaluateRollfail.terms[0].results[0].result
-                    if (Number(evaluateRollfail.total)===1){
-                        Fracaso2 = true;
-                    }
-                } 
-                nVueltas++   
-            }while(explode);
-            if (totalRoll1 >= totalRoll2){
-                totalRoll=totalRoll1
-                dicelist=dicelist1
-                baddicelist=dicelist2
-                Fracaso=Fracaso1
-            }
-            else{
-                totalRoll=totalRoll2
-                dicelist=dicelist2 
-                baddicelist=dicelist1
-                Fracaso=Fracaso2
-            }
-          break;
-        }
-        case 'desventaja':
-        {
-            showbad=true;
-            do
-            {
-                explode=false;
-                let roll = new Roll(rollText);
-                let evaluateRoll = roll.evaluate({async: false});
-                if (game.modules.get('dice-so-nice')?.active){
-                    game.dice3d.showForRoll(roll,game.user,true,false,null)
-                }
-                if (Number(evaluateRoll.total)===6){
-                    explode = true
-                    totalRoll2--
-                }
-                totalRoll2 += Number(evaluateRoll.total)
-                if (dicelist2==""){
-                    dicelist2+=evaluateRoll.terms[0].results[0].result
-                }
-                else {
-                    dicelist2+=" ,"+evaluateRoll.terms[0].results[0].result
-                }
-                if (Number(evaluateRoll.total)===1 && nVueltas ===0){
-                    explode = false
-                    let rollfail = new Roll(rollText);
-                    let evaluateRollfail = rollfail.evaluate({async: false});
-                    if (game.modules.get('dice-so-nice')?.active){
-                        game.dice3d.showForRoll(rollfail,game.user,true,false,null)
-                    }
-                    dicelist2+=" ,"+evaluateRollfail.terms[0].results[0].result
-                    if (Number(evaluateRollfail.total)===1){
-                        Fracaso2 = true;
-                    }
-                } 
-                nVueltas++   
-            }while(explode);
-            if (totalRoll1 <= totalRoll2){
-                totalRoll=totalRoll1
-                dicelist=dicelist1
-                baddicelist=dicelist2
-                Fracaso=Fracaso1
-            }
-            else{
-                totalRoll=totalRoll2
-                dicelist=dicelist2 
-                baddicelist=dicelist1
-                Fracaso=Fracaso2
-            }  
-          break;
-        }
-    }
-
+    console.log ("TOTAL ROLL")
+    console.log (totalRoll)
+    console.log ("INICIATIVA")
+    console.log (iniciativa)
     totalFinal=Number(totalRoll)+Number(iniciativa)
     if (Fracaso == true){totalFinal=-1}
     if (Fracaso == true){
@@ -192,9 +74,7 @@ export async function InitiativeRoll(actor_id)
         dicelist: dicelist,
         rollResult: rollResult,
         dicelistbonus: dicelistbonus,
-        actor_id: actor_id,
-        showbad: showbad,
-        baddicelist: baddicelist,
+        actor_id: actor_id
     });
 
     const chatData = {
@@ -203,7 +83,8 @@ export async function InitiativeRoll(actor_id)
     };
 
     ChatMessage.create(chatData);
-    
+    console.log ("TOTAL FINAL")
+    console.log (totalFinal)
     return totalFinal;
 }
 

@@ -74,7 +74,11 @@ Hooks.on('refreshToken', () => {
 })
 
 Hooks.on('createCombatant', async (combatant) => {
+  console.log ("COMBATANT")
+  console.log (combatant)
   let total = await InitiativeRoll (combatant.actorId)
+  console.log ("TOTAL INITIATIVE 2")
+  console.log (total)
   combatant.update ({'initiative': total})
 })
 

@@ -30,6 +30,15 @@
                 </div>
             </td>
         </tr>
+        {{#if (eq showbad true)}}
+        <tr>
+            <td>
+                <span style="color: darkred; text-decoration: line-through;">
+                    <label>[{{{baddicelist}}}]</label>
+                </span>
+            </td>
+        </tr>
+        {{/if}}
         <tr>
             {{{rollResult}}}
         </tr>
