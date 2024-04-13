@@ -142,6 +142,8 @@
             },
             "iniciativa": {
                 "penalizador": 0,
+                "penalizadordosmanos": 0,
+                "penalizadorescudo": 0,
                 "value": 0,
                 "tipo": "normal"
             },
@@ -290,6 +292,8 @@
             },
             "iniciativa": {
                 "penalizador": 0,
+                "penalizadordosmanos": 0,
+                "penalizadorescudo": 0,
                 "value": 0,
                 "tipo": "normal"
             },
@@ -438,6 +442,8 @@
             },
             "iniciativa": {
                 "penalizador": 0,
+                "penalizadordosmanos": 0,
+                "penalizadorescudo": 0,
                 "value": 0,
                 "tipo": "normal"
             },
@@ -865,6 +871,7 @@
             "alcance": "",
             "precio": "",
             "equipada": false,
+            "dosmanos": false,
             "notas": ""   
         },
         "armadura": {

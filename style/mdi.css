@@ -228,6 +228,7 @@
     border-width: 3px;
     border-bottom-style: solid;
     border-bottom-color: black;
+    text-align: center;
 }
 
 .item select {

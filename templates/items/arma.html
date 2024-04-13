@@ -19,12 +19,16 @@
             <td><h2><label>&nbsp;Daño:&nbsp;</label></h2></td>
             <td><h2><input name="system.dano" type="number" maxlength="2" size="2" value="{{item.system.dano}}" data-dtype="Number"/></h2></td>
           </tr>
+        <table>
           <tr>
-            <td><h2><label>&nbsp;Alcance:&nbsp;</label></h2></td>
+            <td><h2><label>Alcance:</label></h2></td>
             <td><h2><input name="system.alcance" type="text" value="{{item.system.alcance}}" data-dtype="String"/></h2></td>
-            <td><h2><label>&nbsp;Precio:&nbsp;</label></h2></td>
+            <td><h2><label>&nbsp;Precio:</label></h2></td>
             <td><h2><input name="system.precio" type="text" value="{{item.system.precio}}" data-dtype="String"/></h2></td>
+            <td style="width:10px"><h2><label>&nbsp;2M:</label></h2></td>
+            <td style="width:10px"><h2><input type="checkbox" {{checked item.system.dosmanos}} name="system.dosmanos"></h2></td>
           </tr>
+        </table>
       </table>
       <div class="armanotes" data-group="primary" data-tab="descripcion">
         {{editor item.system.desc target="system.desc" button=true owner=owner editable=true}}

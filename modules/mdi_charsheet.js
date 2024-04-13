@@ -30,6 +30,8 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       let armadura=0;
       let defensa=0;
       let penalizador=0;
+      let penalizadorescudo=0;
+      let penalizadordosmanos=0;
       let penalizadorinit=0;
       let tipoIniciativa="normal"
       for (let i of sheetData.items){
@@ -42,6 +44,9 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
           case 'arma':
 				  {
 					  Armas.push(i);
+            if (i.system.dosmanos == true){
+              penalizadordosmanos=2
+            }
 					  break;
 				  }
           case 'objeto':
@@ -63,7 +68,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
 					  Escudos.push(i);
             if (i.system.equipada==true){
               defensa+=Math.abs(i.system.puntuacion)
-              penalizadorinit+=Math.abs(i.system.penalizacion)
+              penalizadorescudo+=Math.abs(i.system.penalizacion)
             }
 					  break;
 				  }
@@ -81,18 +86,24 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       actorData.isGM = game.user.isGM;
       let Acorazado = actorData.Talentos.find((k) => k.name === "Acorazado");
       if (Acorazado){
-        penalizador=0;
-        penalizadorinit=0;
+        penalizadorescudo=0;
+      }
+      let Grande = actorData.Talentos.find((k) => k.name === "Cuanto más grande, mejor");
+      if (Grande){
+        penalizadordosmanos=0;
       }
       let Centella = actorData.Talentos.find((k) => k.name === "Como la centella");
       if (Centella){
         tipoIniciativa="ventaja"
       }
+      penalizadorinit=penalizadorescudo+penalizadordosmanos;
       this.actor.update ({ 'system.armadura.equipo': armadura });
       this.actor.update ({ 'system.defensa.equipo': defensa });
       this.actor.update ({ 'system.penalizador.equipo': penalizador });
-      this.actor.update ({ 'system.iniciativa.penalizador': penalizadorinit });
+      this.actor.update ({ 'system.iniciativa.penalizadorescudo': penalizadorescudo });
       this.actor.update ({ 'system.iniciativa.tipo': tipoIniciativa });
+      this.actor.update ({ 'system.iniciativa.penalizadordosmanos': penalizadordosmanos });
+      this.actor.update ({ 'system.iniciativa.penalizador': penalizadorinit });
 
     }
 
