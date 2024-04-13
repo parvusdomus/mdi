@@ -63,7 +63,6 @@ export default class MDI_VILLANO_SHEET extends ActorSheet{
       }
       let Centella = actorData.Talentos.find((k) => k.name === "Como la centella");
       if (Centella){
-        console.log ("ES RÁPIDO COMO LA CENTELLA")
         tipoIniciativa="ventaja"
       }
       this.actor.update ({ 'system.iniciativa.tipo': tipoIniciativa });
@@ -117,7 +116,6 @@ export default class MDI_VILLANO_SHEET extends ActorSheet{
       event.preventDefault();
 		  const dataset = event.currentTarget.dataset;
 		  const item = this.actor.items.get(dataset.id);
-      console.log (item)
       if (item.system.equipada==true){
         item.update ({ 'system.equipada': false });
       }
@@ -162,7 +160,6 @@ export default class MDI_VILLANO_SHEET extends ActorSheet{
     {
       event.preventDefault();
       const dataset = event.currentTarget.dataset;
-      console.log ("dataset")
       Dialog.confirm({
         title: "Borrar objeto",
 			  content: "¿Estás seguro de que quieres borrar eso?",
@@ -189,7 +186,6 @@ export default class MDI_VILLANO_SHEET extends ActorSheet{
     {
       event.preventDefault();
       const dataset = event.currentTarget.dataset;
-      console.log (this.actor)
       InitiativeRoll (this.actor._id)
     }
 
@@ -229,8 +225,6 @@ export default class MDI_VILLANO_SHEET extends ActorSheet{
       if (periciaentrenada==true){
         html_content+='<td><h1><label>+ 2</label></h1></td>'
       }
-      console.log ("PENALIZADOR")
-      console.log (penalizador)
       if ((penalizador < 0) && ((dataset.pericia=="atletismo")||(dataset.pericia=="acrobacias")||(dataset.pericia=="sigilo"))){
         html_content+='<td><h1><label>- '+Math.abs(penalizador)+'</label></h1></td>'
       }

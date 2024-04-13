@@ -1,6 +1,5 @@
 export async function InitiativeRoll(actor_id)
 {
-    console.log ("INITIATIVE ROLL")
     let actor=game.actors.get(actor_id)
     let explode=false
     let totalRoll = 0;
@@ -54,10 +53,6 @@ export async function InitiativeRoll(actor_id)
         }   
         nVueltas++
 	}while(explode);
-    console.log ("TOTAL ROLL")
-    console.log (totalRoll)
-    console.log ("INICIATIVA")
-    console.log (iniciativa)
     totalFinal=Number(totalRoll)+Number(iniciativa)
     if (Fracaso == true){totalFinal=-1}
     if (Fracaso == true){
@@ -83,8 +78,6 @@ export async function InitiativeRoll(actor_id)
     };
 
     ChatMessage.create(chatData);
-    console.log ("TOTAL FINAL")
-    console.log (totalFinal)
     return totalFinal;
 }
 

@@ -6,9 +6,11 @@ export async function InitiativeRoll(actor_id)
     let totalRoll1 = 0;
     let totalRoll2 = 0;
     let iniciativa = Number(actor.system.iniciativa.value);
+    let rollType = "normal"
     if (actor.type=="Jugador"||actor.type=="Villano"||actor.type=="Sobrenatural")
     {
         iniciativa-=Number(actor.system.iniciativa.penalizador);
+        rollType = actor.system.iniciativa.tipo;
     }
     let dicelistbonus = " +"+actor.system.iniciativa.value
     if (Number(actor.system.iniciativa.penalizador)>0){
@@ -27,9 +29,6 @@ export async function InitiativeRoll(actor_id)
     let Critico = false;
     let rollResult = "";
     let showbad = false;
-    let rollType = actor.system.iniciativa.tipo;
-    console.log ("INITIATIVE ACTOR")
-    console.log (actor)
     
     do
 	{
@@ -403,7 +402,7 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
         if (danototal < 0){
             danototal = 0
         }
-        rollResult="<td class=\"success aplicadano\" data-dano="+danototal+">Daño: "+danototal+"</td>"
+        rollResult="<td class=\"success aplicadano\" data-dano="+danototal+">Click para aplicar daño: "+danototal+"</td>"
         resultList="<td>("+totalFinal+"+"+dano
         if (modificadordano != 0){
             resultList+="+"+modificadordano
