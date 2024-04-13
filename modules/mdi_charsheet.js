@@ -78,6 +78,12 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
         activarTooltips: game.settings.get("mdi", "activarTooltips")
       }
       actorData.isGM = game.user.isGM;
+      let Acorazado = actorData.Talentos.find((k) => k.name === "Acorazado");
+      if (Acorazado){
+        console.log ("TIENE ACORAZADO")
+        penalizador=0;
+        penalizadorinit=0;
+      }
       this.actor.update ({ 'system.armadura.equipo': armadura });
       this.actor.update ({ 'system.defensa.equipo': defensa });
       this.actor.update ({ 'system.penalizador.equipo': penalizador });
@@ -111,7 +117,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       this.actor.update ({ 'system.penalizador.value': penalizador });
       this.actor.update ({ 'system.iniciativa.value': iniciativa });
       this.actor.update ({ 'system.fortuna.max': fortuna });
-      this.actor.update ({ 'system.voluntad.value': voluntad });  
+      this.actor.update ({ 'system.voluntad.value': voluntad });
     }
 
     activateListeners(html)
