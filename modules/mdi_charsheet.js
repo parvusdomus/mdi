@@ -34,11 +34,18 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       let penalizadordosmanos=0;
       let penalizadorinit=0;
       let tipoIniciativa="normal"
+      let bonoFortuna=0;
       for (let i of sheetData.items){
         switch (i.type){
           case 'talento':
 				  {
 					  Talentos.push(i);
+            if (i.name=="Predestinado"){
+              bonoFortuna++
+            }
+            if (i.name=="Reliquia"){
+              bonoFortuna++
+            }
 					  break;
 				  }
           case 'arma':
@@ -104,6 +111,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       this.actor.update ({ 'system.iniciativa.tipo': tipoIniciativa });
       this.actor.update ({ 'system.iniciativa.penalizadordosmanos': penalizadordosmanos });
       this.actor.update ({ 'system.iniciativa.penalizador': penalizadorinit });
+      this.actor.update ({ 'system.fortuna.bono': bonoFortuna });
 
     }
 
@@ -112,7 +120,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       let maxPV = 6+Number(this.actor.system.brio.valor)
       let defensa = Math.floor((Number(this.actor.system.picaresca.valor)+Number(this.actor.system.brio.valor))/2)+4+Number(this.actor.system.defensa.equipo)
       let iniciativa = Math.floor((Number(this.actor.system.picaresca.valor)+Number(this.actor.system.erudicion.valor))/2)
-      let fortuna = Math.floor((Number(this.actor.system.galanteria.valor)+Number(this.actor.system.erudicion.valor))/2)
+      let fortuna = Math.floor((Number(this.actor.system.galanteria.valor)+Number(this.actor.system.erudicion.valor))/2)+Number(this.actor.system.fortuna.bono)
       let armadura = Number(this.actor.system.armadura.equipo)
       let penalizador = Number(this.actor.system.penalizador.equipo)
       let valormayor = 0

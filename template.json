@@ -153,6 +153,7 @@
                 "estado": "normal"
             },
             "fortuna": {
+                "bono": 0,
                 "value": 0,
                 "min": 0,
                 "max": 0
