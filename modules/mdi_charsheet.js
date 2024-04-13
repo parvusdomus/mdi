@@ -31,6 +31,7 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       let defensa=0;
       let penalizador=0;
       let penalizadorinit=0;
+      let tipoIniciativa="normal"
       for (let i of sheetData.items){
         switch (i.type){
           case 'talento':
@@ -84,10 +85,16 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
         penalizador=0;
         penalizadorinit=0;
       }
+      let Centella = actorData.Talentos.find((k) => k.name === "Como la centella");
+      if (Centella){
+        console.log ("ES RÁPIDO COMO LA CENTELLA")
+        tipoIniciativa="ventaja"
+      }
       this.actor.update ({ 'system.armadura.equipo': armadura });
       this.actor.update ({ 'system.defensa.equipo': defensa });
       this.actor.update ({ 'system.penalizador.equipo': penalizador });
       this.actor.update ({ 'system.iniciativa.penalizador': penalizadorinit });
+      this.actor.update ({ 'system.iniciativa.tipo': tipoIniciativa });
 
     }
 

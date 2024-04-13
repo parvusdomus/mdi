@@ -23,6 +23,7 @@ export default class MDI_VILLANO_SHEET extends ActorSheet{
       const actorData = sheetData;
       const Talentos = [];
       const Armas = [];
+      let tipoIniciativa="normal"
       for (let i of sheetData.items){
         switch (i.type){
           case 'talento':
@@ -60,6 +61,12 @@ export default class MDI_VILLANO_SHEET extends ActorSheet{
       actorData.settings = {
         activarTooltips: game.settings.get("mdi", "activarTooltips")
       }
+      let Centella = actorData.Talentos.find((k) => k.name === "Como la centella");
+      if (Centella){
+        console.log ("ES RÁPIDO COMO LA CENTELLA")
+        tipoIniciativa="ventaja"
+      }
+      this.actor.update ({ 'system.iniciativa.tipo': tipoIniciativa });
       actorData.isGM = game.user.isGM;
     }
 

@@ -27,9 +27,10 @@ export async function InitiativeRoll(actor_id)
     let Critico = false;
     let rollResult = "";
     let showbad = false;
-
-    let rollType = "normal";
-
+    let rollType = actor.system.iniciativa.tipo;
+    console.log ("INITIATIVE ACTOR")
+    console.log (actor)
+    
     do
 	{
         explode=false;

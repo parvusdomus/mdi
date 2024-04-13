@@ -142,7 +142,8 @@
             },
             "iniciativa": {
                 "penalizador": 0,
-                "value": 0
+                "value": 0,
+                "tipo": "normal"
             },
             "voluntad": {
                 "penalizador": 0,
@@ -289,7 +290,8 @@
             },
             "iniciativa": {
                 "penalizador": 0,
-                "value": 0
+                "value": 0,
+                "tipo": "normal"
             },
             "voluntad": {
                 "penalizador": 0,
@@ -436,7 +438,8 @@
             },
             "iniciativa": {
                 "penalizador": 0,
-                "value": 0
+                "value": 0,
+                "tipo": "normal"
             },
             "voluntad": {
                 "penalizador": 0,
