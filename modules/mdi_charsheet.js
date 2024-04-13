@@ -103,6 +103,12 @@ export default class MDI_CHAR_SHEET extends ActorSheet{
       if (Centella){
         tipoIniciativa="ventaja"
       }
+      let Bronce = actorData.Talentos.find((k) => k.name === "Piel de bronce");
+      if (Bronce){
+        if (armadura==0){
+          armadura=3
+        }
+      }
       penalizadorinit=penalizadorescudo+penalizadordosmanos;
       this.actor.update ({ 'system.armadura.equipo': armadura });
       this.actor.update ({ 'system.defensa.equipo': defensa });
