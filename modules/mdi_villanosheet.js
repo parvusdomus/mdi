@@ -3,7 +3,7 @@ import {WeaponRoll} from "./combat.js";
 import {InitiativeRoll} from "./combat.js";
 export default class MDI_VILLANO_SHEET extends ActorSheet{
     static get defaultOptions() {
-      return mergeObject(super.defaultOptions, {
+      return foundry.utils.mergeObject(super.defaultOptions, {
           classes: ["mdi", "sheet", "actor"],
           template: "systems/mdi/templates/actors/villano.html",
           width: 780,

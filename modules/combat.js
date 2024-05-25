@@ -34,7 +34,7 @@ export async function InitiativeRoll(actor_id)
 	{
         explode=false;
 		let roll = new Roll(rollText);
-		let evaluateRoll = roll.evaluate({async: false});
+		let evaluateRoll = await roll.evaluate();
         if (game.modules.get('dice-so-nice')?.active){
             game.dice3d.showForRoll(roll,game.user,true,false,null)
         }
@@ -53,7 +53,7 @@ export async function InitiativeRoll(actor_id)
         if (Number(evaluateRoll.total)===1 && nVueltas ===0){
             explode = false
             let rollfail = new Roll(rollText);
-		    let evaluateRollfail = rollfail.evaluate({async: false});
+		    let evaluateRollfail = await rollfail.evaluate();
             if (game.modules.get('dice-so-nice')?.active){
                 game.dice3d.showForRoll(rollfail,game.user,true,false,null)
             }
@@ -81,7 +81,7 @@ export async function InitiativeRoll(actor_id)
             {
                 explode=false;
                 let roll = new Roll(rollText);
-                let evaluateRoll = roll.evaluate({async: false});
+                let evaluateRoll = await roll.evaluate();
                 if (game.modules.get('dice-so-nice')?.active){
                     game.dice3d.showForRoll(roll,game.user,true,false,null)
                 }
@@ -99,7 +99,7 @@ export async function InitiativeRoll(actor_id)
                 if (Number(evaluateRoll.total)===1 && nVueltas ===0){
                     explode = false
                     let rollfail = new Roll(rollText);
-                    let evaluateRollfail = rollfail.evaluate({async: false});
+                    let evaluateRollfail = await rollfail.evaluate();
                     if (game.modules.get('dice-so-nice')?.active){
                         game.dice3d.showForRoll(rollfail,game.user,true,false,null)
                     }
@@ -131,7 +131,7 @@ export async function InitiativeRoll(actor_id)
             {
                 explode=false;
                 let roll = new Roll(rollText);
-                let evaluateRoll = roll.evaluate({async: false});
+                let evaluateRoll = await roll.evaluate();
                 if (game.modules.get('dice-so-nice')?.active){
                     game.dice3d.showForRoll(roll,game.user,true,false,null)
                 }
@@ -149,7 +149,7 @@ export async function InitiativeRoll(actor_id)
                 if (Number(evaluateRoll.total)===1 && nVueltas ===0){
                     explode = false
                     let rollfail = new Roll(rollText);
-                    let evaluateRollfail = rollfail.evaluate({async: false});
+                    let evaluateRollfail = await rollfail.evaluate();
                     if (game.modules.get('dice-so-nice')?.active){
                         game.dice3d.showForRoll(rollfail,game.user,true,false,null)
                     }
@@ -243,7 +243,7 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
 	{
         explode=false;
 		let roll = new Roll(rollText);
-		let evaluateRoll = roll.evaluate({async: false});
+		let evaluateRoll = await roll.evaluate();
         if (game.modules.get('dice-so-nice')?.active){
             game.dice3d.showForRoll(roll,game.user,true,false,null)
         }
@@ -261,7 +261,7 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
         if (Number(evaluateRoll.total)===1 && nVueltas ===0){
             explode = false
             let rollfail = new Roll(rollText);
-		    let evaluateRollfail = rollfail.evaluate({async: false});
+		    let evaluateRollfail = await rollfail.evaluate();
             if (game.modules.get('dice-so-nice')?.active){
                 game.dice3d.showForRoll(rollfail,game.user,true,false,null)
             }
@@ -289,7 +289,7 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
             {
                 explode=false;
                 let roll = new Roll(rollText);
-                let evaluateRoll = roll.evaluate({async: false});
+                let evaluateRoll = await roll.evaluate();
                 if (game.modules.get('dice-so-nice')?.active){
                     game.dice3d.showForRoll(roll,game.user,true,false,null)
                 }
@@ -307,7 +307,7 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
                 if (Number(evaluateRoll.total)===1 && nVueltas ===0){
                     explode = false
                     let rollfail = new Roll(rollText);
-                    let evaluateRollfail = rollfail.evaluate({async: false});
+                    let evaluateRollfail = await rollfail.evaluate();
                     if (game.modules.get('dice-so-nice')?.active){
                         game.dice3d.showForRoll(rollfail,game.user,true,false,null)
                     }
@@ -339,7 +339,7 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
             {
                 explode=false;
                 let roll = new Roll(rollText);
-                let evaluateRoll = roll.evaluate({async: false});
+                let evaluateRoll = await roll.evaluate();
                 if (game.modules.get('dice-so-nice')?.active){
                     game.dice3d.showForRoll(roll,game.user,true,false,null)
                 }
@@ -357,7 +357,7 @@ export async function WeaponRoll(actor_id,rolltitle,rollType,nombreatributo, nom
                 if (Number(evaluateRoll.total)===1 && nVueltas ===0){
                     explode = false
                     let rollfail = new Roll(rollText);
-                    let evaluateRollfail = rollfail.evaluate({async: false});
+                    let evaluateRollfail = await rollfail.evaluate();
                     if (game.modules.get('dice-so-nice')?.active){
                         game.dice3d.showForRoll(rollfail,game.user,true,false,null)
                     }
