@@ -7,12 +7,7 @@
             <td style="width: 25%;">
               <h2>
                 <select name="system.pericia" data-dtype="String">
-                  {{#select item.system.pericia}}
-                      <option value="cac">Cuerpo a c.</option>
-                      <option value="sinarmas">Sin armas</option>
-                      <option value="atletismo">Atletismo</option>
-                      <option value="distancia">A distancia</option>
-                  {{/select}}
+                  {{selectOptions periciaArma selected=item.system.pericia}}
                 </select>
               </h2>
             </td>

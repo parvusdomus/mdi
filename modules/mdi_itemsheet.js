@@ -13,6 +13,17 @@ export default class MDI_ITEM_SHEET extends ItemSheet{
         return `systems/mdi/templates/items/${this.item.type}.html`;
     }
 
+    getData() {
+      const data = super.getData();
+      data.periciaArma = {
+        cac: "Cuerpo a c.",
+        sinarmas: "Sin armas",
+        atletismo: "Atletismo",
+        distancia: "A distancia"
+      }
+      return data;
+    }
+
 
   
   }
