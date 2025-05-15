@@ -1,5 +1,5 @@
 export default class mdiChat {
-    static chatListeners (html) {
+    static chatListeners (message, html) {
       html.on('click', '.aplicadano', this._aplicaDano.bind(this));
     }
 
@@ -36,6 +36,7 @@ export default class mdiChat {
               flags: {
                 core:{
                   statusId: "dead",
+                  name: "dead",
                   overlay: true
                 }
               }

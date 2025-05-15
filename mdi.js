@@ -5,10 +5,26 @@ import MDI_ITEM_SHEET from "./modules/mdi_itemsheet.js";
 import mdiChat from "./modules/chat.js";
 import {InitiativeRoll} from './modules/combat.js';
 
-
+var __defProp$t = Object.defineProperty;
+var __name$t = (target, value) => __defProp$t(target, "name", { value, configurable: true });
+const _mdiGamePause = class _mdiGamePause extends foundry.applications.ui.GamePause {
+  /** @override */
+  async _renderHTML(context, _options) {
+    const img = document.createElement("img");
+    img.src = "systems/mdi/style/images/logo.webp"
+    if (context.spin) {
+      img.classList.add("fa-spin");
+    }
+    const caption = document.createElement("figcaption");
+    caption.innerText = context.text;
+    return [img, caption];
+  }
+};
+__name$t(_mdiGamePause, "mdiGamePause");
+let mdiGamePause = _mdiGamePause;
 
 Hooks.once("init", function(){
-  document.getElementById("logo").src = "/systems/mdi/style/images/logo2.webp";
+  //document.getElementById("logo").src = "/systems/mdi/style/images/logo2.webp";
   console.log("test | INITIALIZING MDI CHARACTER SHEETS...");
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("mdi", MDI_CHAR_SHEET, {
@@ -57,17 +73,15 @@ Hooks.once("init", function(){
     requiresReload: false,
     config: true
   });
-
+CONFIG.ui.pause = mdiGamePause;  
 });
 
 
-Hooks.on("renderPause", () => {
-  $("#pause img").attr("class", "fa-spin pause-image");
-  $("#pause figcaption").attr("class", "pause-mdi");
-});
 
 
-Hooks.on('renderChatLog', (app, html, data) => mdiChat.chatListeners(html))
+
+//Hooks.on('renderChatLog', (app, html, data) => mdiChat.chatListeners(html))
+Hooks.on('renderChatMessage', (message, html) => mdiChat.chatListeners(message, html))
 
 Hooks.on('refreshToken', () => {
 

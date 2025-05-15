@@ -296,22 +296,9 @@
     background-size: 100% 100%;
 }
 
-#pause .pause-image {
-    background: url("images/logo.webp");
-    background-size: 128px;
+.paused img {
     width: 128px;
     height: 128px;
-    padding-left: 128px;
-}
-
-#pause .pause-mdi {
-    font-family: var(--pause-font);
-    margin: 0 auto;
-    text-align: center;
-    transform: scale3d(1, 1, 1);
-    text-transform: uppercase;
-    font-weight: 900;
-    color: #f4eded;
 }
 
 .editor {
@@ -432,7 +419,16 @@
 
 .chat-header td:nth-child(1){
     text-align: left;
-    width: 40px
+    width: 44px;
+    padding-right: 0px;
+    padding-left: 4px;
+}
+
+.chat-header td:nth-child(3){
+    text-align: left;
+    width: 44px;
+    padding-right: 4px;
+    padding-left: 0px;
 }
 
 .chat-content {
